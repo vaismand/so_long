@@ -55,5 +55,5 @@ int    main(void)
         i++;
     }
     mlx_loop(mlx);
-
+    printf("Hello world!\n");
 }
