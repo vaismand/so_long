@@ -20,6 +20,15 @@
 # define MAP_COLLECTIBLE 	'C'
 # define MAP_ENEMY 			'X'
 
+# define KEY_Q				113
+# define KEY_ESC  			65307
+
+# define WALL_XPM			"res/world/wall_mid.xpm"
+# define FLOOR_XPM			"res/world/floot_1.xpm"
+# define COINS_XPM			"res/world/chest_full.xpm"
+# define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
+# define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
+
 typedef struct s_image
 {
 	void	*img_ptr;
@@ -63,5 +72,33 @@ typedef struct s_game
 	t_image		player_right;
 	t_image		player_back;
 }	t_game;
+
+void	ft_check_command_line_arguments(int argc, char **argv, t_game *game);
+void	ft_init_map(t_game *game, char *argv);
+char	*ft_strappend(char **s1, const char *s2);
+void	ft_check_for_empty_line(char *map, t_game *game);
+void	ft_init_vars(t_game *game);
+void	ft_check_map(t_game *game);
+void	ft_check_rows(t_game *game);
+void	ft_check_columns(t_game *game);
+void	ft_read_map(t_game *game, char *argv);
+void	ft_count_map_parameters(t_game *game);
+void	ft_verify_map_parameters(t_game *game);
+void	ft_init_mlx(t_game *game);
+void	ft_init_sprites(t_game *game);
+t_image	ft_new_sprite(void *mlx, char *path, t_game *game);
+int	ft_render_map(t_game *game);
+void	ft_identify_sprite(t_game *game, int x, int y);
+void	ft_render_player(t_game *game, int x, int y);
+void	ft_render_sprite(t_game *game, t_image sprite, int column, int line);
+void	ft_print_movements(t_game *game);
+int	ft_handle_input(int keysym, t_game *game);
+void	ft_player_move(t_game *game, int x, int y, int player_sprite);
+int	ft_victory(t_game *game);
+int	ft_error_msg(char *message, t_game *game);
+int	ft_close_game(t_game *game);
+void	ft_free_all_allocated_memory(t_game *game);
+void	ft_destroy_images(t_game *game);
+void	ft_free_map(t_game *game);
 
 # endif
