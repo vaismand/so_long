@@ -5,8 +5,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../minilibx-linux/mlx.h"
-# include "../lib/libft/libft.h"
+# include <X11/X.h>
+# include "mlx-linux/mlx.h"
+# include "mlx-linux/mlx_int.h"
+# include "lib/libft/libft.h"
 
 # define IMG_HEIGHT			32
 # define IMG_WIDTH			32
@@ -17,12 +19,6 @@
 # define MAP_PLAYER 		'P'
 # define MAP_COLLECTIBLE 	'C'
 # define MAP_ENEMY 			'X'
-
-typedef enum e_bool
-{
-	false,
-	true
-}	t_bool;
 
 typedef struct s_image
 {
@@ -57,7 +53,6 @@ typedef struct s_game
 	int		movements;
 	int		player_sprite;
 	t_map		map;
-	t_bool		map_alloc;
 	t_image		wall;
 	t_image		floor;
 	t_image		coins;
