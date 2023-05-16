@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include "ft_strlen.c"
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
@@ -41,13 +39,4 @@ unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 	}
 	*s1 = '\0';
 	return (i + (s2 - src));
-}
-
-int	main(void)
-{
-	char	str[10] = "123";
-	char	dest[10] = "abcdsadsadasdas";
-	ft_strlcat(dest, str, 8);
-	printf("%s", dest);
-	return (0);
 }

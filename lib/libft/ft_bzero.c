@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -25,12 +24,4 @@ void	ft_bzero(void *s, size_t n)
 		str[i] = 0;
 		i++;
 	}
-}
-
-int	main(void)
-{
-	char	str[10] = "abcdefghi";
-	ft_bzero(str, 6);
-	printf("%s", str);
-	return (0);
 }

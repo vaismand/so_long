@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
@@ -25,13 +24,4 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		str++;
 	}
 	return (NULL);
-}
-
-int	main(void)
-{
-	char	str[10] = "abcdefghi";
-	char	*ptr;
-	ptr = ft_memchr(str, 'd', 10);
-	printf("%s", ptr);
-	return (0);
 }

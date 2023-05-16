@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
 	unsigned int	i;
@@ -23,12 +20,4 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	while (s1[i] == s2[i] && s1[i] && (i < n - 1))
 		i++;
 	return ((unsigned char)s1[i] - (unsigned char ) s2[i]);
-}
-
-int	main(void)
-{
-	char	str[10] = "123456789";
-	char	dest[10] = "123436789";
-	printf("%d", ft_strncmp(str, dest, 10));
-	return (0);
 }

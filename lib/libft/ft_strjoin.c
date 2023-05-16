@@ -11,9 +11,13 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include "ft_strlen.c"
-#include "ft_memcpy.c"
+
+char	*ft_strjoin_sided(char const *s1, char const *s2, int side)
+{
+	if (side)
+		return (ft_strjoin(s2, s1));
+	return (ft_strjoin(s1, s2));
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -26,18 +30,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s1_l = ft_strlen(s1);
 	s2_l = ft_strlen(s2);
 	str = (char *)malloc(sizeof(char) * (s1_l + s2_l + 1));
+	if (!str)
+		return (NULL);
 	ft_memcpy(str, s1, s1_l);
 	ft_memcpy(str + s1_l, s2, s2_l);
 	str[s1_l + s2_l] = '\0';
 	return (str);
-	free(str);
-}
-
-int main(void)
-{
-	char *str1 = "12345";
-	char *str2 = "67890";
-	char *str3 = ft_strjoin(str1, str2);
-	printf("%s", str3);
-	return (0);
 }

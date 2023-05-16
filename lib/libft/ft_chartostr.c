@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_chartostr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 13:31:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2022/10/03 13:32:15 by dvaisman         ###   ########.fr       */
+/*   Created: 2022/10/21 10:54:26 by dvaisman          #+#    #+#             */
+/*   Updated: 2022/10/21 10:55:18 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+char	*ft_chartostr(char c)
 {
-	if (c >= 'A' && c <= 'Z')
-		return (c + 0x20);
-	return (c);
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * 2);
+	if (!str)
+		return (NULL);
+	str[0] = c;
+	str[1] = '\0';
+	return (str);
 }

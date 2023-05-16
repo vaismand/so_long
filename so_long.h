@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <X11/X.h>
+# include <stdbool.h>
 # include "mlx-linux/mlx.h"
 # include "mlx-linux/mlx_int.h"
 # include "lib/libft/libft.h"
@@ -32,10 +33,8 @@
 typedef struct s_image
 {
 	void	*img_ptr;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int		x;
+	int		y;
 }	t_image;
 
 typedef struct s_position
@@ -62,6 +61,7 @@ typedef struct s_game
 	int		movements;
 	int		player_sprite;
 	t_map		map;
+	_Bool		map_alloc;
 	t_image		wall;
 	t_image		floor;
 	t_image		coins;
@@ -86,7 +86,7 @@ void	ft_count_map_parameters(t_game *game);
 void	ft_verify_map_parameters(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	ft_init_sprites(t_game *game);
-t_image	ft_new_sprite(void *mlx, char *path, t_game *game);
+t_image	ft_new_image(void *mlx, char *path, t_game *game);
 int	ft_render_map(t_game *game);
 void	ft_identify_sprite(t_game *game, int x, int y);
 void	ft_render_player(t_game *game, int x, int y);
@@ -95,7 +95,7 @@ void	ft_print_movements(t_game *game);
 int	ft_handle_input(int keysym, t_game *game);
 void	ft_player_move(t_game *game, int x, int y, int player_sprite);
 int	ft_victory(t_game *game);
-int	ft_error_msg(char *message, t_game *game);
+void	ft_error_msg(char *msg, t_game *game);
 int	ft_close_game(t_game *game);
 void	ft_free_all_allocated_memory(t_game *game);
 void	ft_destroy_images(t_game *game);

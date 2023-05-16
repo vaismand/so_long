@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_strdup(const char *s1)
 {
@@ -33,10 +32,3 @@ char	*ft_strdup(const char *s1)
 	str[i] = '\0';
 	return (str);
 }
-
-/*int	main(void)
-{
-	char *str = "1234sd5";
-	printf("%s", ft_strdup(str));
-	return (0);
-}*/

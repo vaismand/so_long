@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
-
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
@@ -34,13 +31,4 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		dest[i] = '\0';
 	}
 	return (c);
-}
-
-int	main(void)
-{
-	char	str[10] = "123456789";
-	char	dest[10] = "abc";
-	ft_strlcpy(dest, str, 6);
-	printf("%s", dest);
-	return (0);
 }

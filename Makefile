@@ -3,6 +3,7 @@ NAME    = so_long
 OBJS    = ${SRCS:.c=.o}
 CC              = cc
 RM              = rm -f
+LIBFT 			= ./lib/libft/libft.a
 SRCS    = so_long.c
 
 RED= \033[0;91m
@@ -14,7 +15,8 @@ all: ${NAME}
 
 ${NAME}: ${OBJS}
 	@${MAKE} -s -C ./mlx-linux
-	@${CC} ${CFLAGS} -g ${OBJS} -L./mlx_linux -lXext -lX11 -lm -lz -o ${NAME} ./mlx-linux/libmlx.a
+	@${MAKE} -s -C ./lib/libft
+	@${CC} ${CFLAGS} -g ${OBJS} -L./mlx_linux -lXext -lX11 -lm -lz -o ${NAME} ${LIBFT} ./mlx-linux/libmlx.a
 
 ${OBJS}:
 	@${CC} ${CFLAGS} -I/usr/include -Imlx-linux -O3 -c ${SRCS}
@@ -24,6 +26,7 @@ fclean: clean
 	@echo "${BLUE}Cleaning is done!"
 
 clean:
+	@${MAKE} clean -s -C ./lib/libft
 	@${MAKE} clean -s -C ./mlx-linux
 	@${RM} ${OBJS}
 
