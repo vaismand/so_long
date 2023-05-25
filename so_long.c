@@ -23,6 +23,7 @@ char	*ft_strappend(char **s1, const char *s2)
     return (str);
 }
 
+
 int	ft_close_game(t_game *game)
 {
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
@@ -41,31 +42,89 @@ void	ft_error_msg(char *msg, t_game *game)
     printf("Error\n%s\n", msg);
     ft_close_game(game);
 }
-
-void	ft_init_map(t_game *game, char *argv)
+int	ft_length_line(int fd)
 {
-	char	*map_temp;
-	char	*line_temp;
-	int		map_fd;
+	char *line;
+    int i;
 
-	map_fd = open(argv, O_RDONLY);
-	if (map_fd == -1)
-		ft_error_msg("The Map couldn't be opened. Does the Map exist?", game);
-	map_temp = ft_strdup("");
-	game->map.rows = 0;
-	while (true)
+    i = 0;
+	line = get_next_line(fd);
+	while (line[i] != '\n')
+        i++;
+    free(line);
+	return (i);
+}
+
+int	ft_count_lines(int fd)
+{
+	char *line;
+	int	count;
+
+	count = 1;
+	while (1)
 	{
-		line_temp = get_next_line(map_fd);
-		if (line_temp == NULL)
-			break ;
-		map_temp = ft_strappend(&map_temp, line_temp);
-		free(line_temp);
-		game->map.rows++;
+		line = get_next_line(fd);
+		if (line == 0)
+			break;
+		else
+		{
+			free(line);
+			count++;
+		}
 	}
-	close(map_fd);
-	game->map.full = ft_split(map_temp, '\n');
-	game->map_alloc = true;
-	free(map_temp);
+	return(count);
+}
+int ft_fill_map(t_game *game, char **argv)
+{
+    int fd;
+    char *line;
+    int i;
+    int j;
+
+    fd = open(argv[1], O_RDONLY);
+    i = 0;
+    game->map.full = malloc(sizeof(char *) * game->map.rows); // Move memory allocation outside the loop
+	printf("rows: %d\n", game->map.rows);
+	printf("columns: %d\n", game->map.columns);
+    while (i < game->map.rows)
+    {
+        j = 0;
+        line = get_next_line(fd);
+        game->map.full[i] = malloc(sizeof(char) * game->map.columns); // Allocate memory for each row
+        while (j <= game->map.columns)
+        {
+            game->map.full[i][j] = line[j];
+            j++;
+        }
+        free(line);
+        i++;
+    }
+	close(fd);
+    return (0);
+}
+
+void	ft_size_window(t_game *game, char **argv)
+{
+	int fd;
+	char *line;
+
+	fd = open(argv[1], O_RDONLY);
+	game->map.rows = 0;
+	game->map.columns = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == 0)
+			break;
+		else
+		{
+			if (ft_strlen(line) > game->map.columns)
+				game->map.columns = ft_strlen(line) - 1;
+			free(line);
+			game->map.rows++;
+		}
+	}
+	close(fd);
 }
 
 void	ft_init_images(t_game *game)
@@ -90,13 +149,48 @@ t_image	ft_new_image(void *mlx, char *path, t_game *game)
 	return (image);
 }
 
-int    main(void)
+int	ft_draw_map(t_game *game)
 {
-    t_game	*game;
+	int	x;
+	int	y;
 
-	game = malloc(sizeof(t_game));
-    ft_init_map(game, "res/map/map.ber");
-    ft_init_images(game);
-    mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_handle_input, game);
-    mlx_loop(game->mlx_ptr);
+	x = 0;
+	while (x < game->map.rows)
+	{
+		y = 0;
+		while (y < game->map.columns)
+		{
+			if (game->map.full[x][y] == '1')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->wall.img_ptr, x, y);
+			/*else if (game->map.full[x][y] == '0')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->floor.img_ptr, x, y);
+			else if (game->map.full[x][y] == 'C')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->coins.img_ptr, x, y);
+			else if (game->map.full[x][y] == 'E')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->open_exit.img_ptr, x, y);
+			else if (game->map.full[x][y] == 'P')
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->exit_closed.img_ptr, x, y);*/
+			y++;
+		}
+		x++;
+	}
+	return (0);
+}
+
+int    main(int argc, char **argv)
+{
+	if (argc == 2)
+	{
+		t_game	*game;
+
+		game = malloc(sizeof(t_game));
+		game->mlx_ptr = mlx_init();
+		ft_size_window(game, argv);
+		ft_fill_map(game, argv);
+		game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * IMG_HEIGHT, game->map.rows * IMG_WIDTH, "so_long");
+		ft_init_images(game);
+		mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_handle_input, game);
+		mlx_loop_hook(game->mlx_ptr, ft_draw_map, game);
+		mlx_loop(game->mlx_ptr);
+	}
 }

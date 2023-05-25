@@ -1,7 +1,7 @@
 CFLAGS  = -Wall -Wextra -Werror
 NAME    = so_long
 OBJS    = ${SRCS:.c=.o}
-CC              = cc
+CC              = cc -g
 RM              = rm -f
 LIBFT 			= ./lib/libft/libft.a
 SRCS    = so_long.c

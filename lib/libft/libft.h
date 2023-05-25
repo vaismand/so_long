@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:24:24 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/16 12:22:41 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:05:11 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_list
 
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
-size_t			ft_strlen(const char *str);
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
@@ -79,6 +78,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_fake_use(void *ptr);
+int				ft_strlen(const char *str);
 int				ft_lstsize(t_list *lst);
 int				ft_tolower(int c);
 int				ft_toupper(int c);

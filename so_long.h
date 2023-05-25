@@ -25,7 +25,7 @@
 # define KEY_ESC  			65307
 
 # define WALL_XPM			"res/world/wall_mid.xpm"
-# define FLOOR_XPM			"res/world/floot_1.xpm"
+# define FLOOR_XPM			"res/world/floor_1.xpm"
 # define COINS_XPM			"res/world/chest_full.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
