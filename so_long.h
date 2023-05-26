@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
+/*   Updated: 2023/05/26 22:53:50 by dvaisman         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
@@ -7,9 +19,11 @@
 # include <fcntl.h>
 # include <X11/X.h>
 # include <stdbool.h>
+# include <X11/keysym.h>
 # include "mlx-linux/mlx.h"
 # include "mlx-linux/mlx_int.h"
 # include "lib/libft/libft.h"
+# include "lib/ft_printf/ft_printf.h"
 
 # define IMG_HEIGHT			32
 # define IMG_WIDTH			32
@@ -31,6 +45,7 @@
 # define KEY_LEFT			65361
 # define KEY_DOWN			65364
 # define KEY_RIGHT			65363
+# define MOUSE_CLOSE		33
 
 # define WALL_XPM			"res/world/wall.xpm"
 # define FLOOR_XPM			"res/world/floor.xpm"
@@ -77,19 +92,21 @@ typedef struct s_game
 	t_image		player;
 }	t_game;
 
-void	ft_check_command_line_arguments(int argc, char **argv, t_game *game);
-void	ft_init_map(t_game *game, char *argv);
-char	*ft_strappend(char **s1, const char *s2);
-void	ft_check_for_empty_line(char *map, t_game *game);
+
 void	ft_init_vars(t_game *game);
-void	ft_check_map(t_game *game);
-void	ft_check_rows(t_game *game);
-void	ft_check_columns(t_game *game);
+void	ft_init_game(t_game *game, char **argv);
+void	ft_init_images(t_game *game);
+void	ft_init_player(t_game *game);
+void	check_map(t_game *game);
+void	check_rows(t_game *game);
+void	check_columns(t_game *game);
 void	ft_read_map(t_game *game, char *argv);
-void	ft_count_map_parameters(t_game *game);
-void	ft_verify_map_parameters(t_game *game);
+void	verify_map_param(t_game *game);
+void	count_map_param(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	ft_init_sprites(t_game *game);
+void	ft_size_window(t_game *game, char **argv);
+int	ft_fill_map(t_game *game, char **argv);
 t_image	ft_new_image(void *mlx, char *path, t_game *game);
 int	ft_render_map(t_game *game);
 void	ft_identify_sprite(t_game *game, int x, int y);

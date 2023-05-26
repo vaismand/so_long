@@ -1,33 +1,39 @@
-CFLAGS  = -Wall -Wextra -Werror
-NAME    = so_long
-OBJS    = ${SRCS:.c=.o}
-CC              = cc -g
-RM              = rm -f
-LIBFT 			= ./lib/libft/libft.a
-SRCS    = so_long.c
+CFLAGS    = -Wall -Wextra -Werror
+NAME      = so_long
+SRCS := $(wildcard src/*.c)
+OBJS := $(SRCS:.c=.o)
+CC        = gcc
+RM        = rm -f
+LIBFT     = ./lib/libft/libft.a
+FT_PRINTF = ./lib/ft_printf/libftprintf.a
+MLX_DIR   = ./mlx-linux
+MLX_LIB   = $(MLX_DIR)/libmlx.a
+MLX_INC   = -I$(MLX_DIR)
 
-RED= \033[0;91m
-GREEN= \033[1;92m
-BLUE= \033[0;94m
+RED       = \033[0;91m
+GREEN     = \033[1;92m
+BLUE      = \033[0;94m
 
 all: ${NAME}
-	@echo "${GREEN}Compilation done!"
 
 ${NAME}: ${OBJS}
-	@${MAKE} -s -C ./mlx-linux
-	@${MAKE} -s -C ./lib/libft
-	@${CC} ${CFLAGS} -g ${OBJS} -L./mlx_linux -lXext -lX11 -lm -lz -o ${NAME} ${LIBFT} ./mlx-linux/libmlx.a
+	@${MAKE} -s -C ./lib/libft > /dev/null
+	@${MAKE} -s -C ./lib/ft_printf > /dev/null
+	@${MAKE} -s -C $(MLX_DIR) > /dev/null
+	@${CC} ${CFLAGS} ${OBJS} -L$(MLX_DIR) ${MLX_INC} -lmlx -lXext -lX11 -lm -lz -o ${NAME} ${LIBFT} ${FT_PRINTF} > /dev/null
+	@echo "${GREEN}Compilation is done!"
 
-${OBJS}:
-	@${CC} ${CFLAGS} -I/usr/include -Imlx-linux -O3 -c ${SRCS}
+.c.o:
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o} ${MLX_INC}
 
 fclean: clean
 	@${RM} ${NAME}
 	@echo "${BLUE}Cleaning is done!"
 
 clean:
+	@${MAKE} clean -s -C $(MLX_DIR)
 	@${MAKE} clean -s -C ./lib/libft
-	@${MAKE} clean -s -C ./mlx-linux
+	@${MAKE} clean -s -C ./lib/ft_printf
 	@${RM} ${OBJS}
 
 re: fclean all

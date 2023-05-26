@@ -10,13 +10,14 @@
 
 ## Please use configure script
 
+.SILENT :
 
-all	: do_configure
+all : do_configure /dev/null
 
-do_configure	:
-	./configure
+do_configure :
+	@./configure > /dev/null
 
-clean	:
-	./configure clean
+clean :
+	@./configure clean > /dev/null
 
-re	: clean all
+re : clean all
