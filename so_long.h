@@ -50,7 +50,7 @@ typedef struct s_position
 {
 	int	x;
 	int	y;
-}	t_positon;
+}	t_position;
 
 typedef struct s_map
 {
@@ -58,8 +58,7 @@ typedef struct s_map
 	int		rows;
 	int		columns;
 	int		coins;
-	int		exit;
-	t_positon	player;
+	t_position	exit;
 }	t_map;
 
 typedef struct s_game

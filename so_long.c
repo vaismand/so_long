@@ -2,9 +2,9 @@
 
 int	ft_victory(t_game *game)
 {
-	(void)game;
 	printf("You won!");
-	return (0);
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	exit(0);
 }
 void	ft_render_sprite(t_game *game, t_image sprite, int column, int line)
 {
@@ -43,19 +43,29 @@ void	ft_player_move(t_game *game, int x, int y)
 		if (game->map.full[game->player.y + y][game->player.x + x] == 'C')
 		{
 			game->map.coins--;
-			ft_print_movements(game);
 		}
 		if (game->map.full[game->player.y + y][game->player.x + x] == 'E')
 		{
 			if (game->map.coins == 0)
 				ft_victory(game);
 		}
-		game->map.full[game->player.y][game->player.x] = '0';
-		game->player.x += x;
-		game->player.y += y;
-		game->map.full[game->player.y][game->player.x] = 'P';
+		if (game->player.x == game->map.exit.x && game->player.y == game->map.exit.y)
+		{
+			game->map.full[game->player.y][game->player.x] = 'E';
+			game->player.x += x;
+			game->player.y += y;
+			game->map.full[game->player.y][game->player.x] = 'P';
+		}
+		else
+		{
+			game->map.full[game->player.y][game->player.x] = '0';
+			game->player.x += x;
+			game->player.y += y;
+			game->map.full[game->player.y][game->player.x] = 'P';
+		}
 		game->movements++;
 		ft_render_player(game, game->player.x, game->player.y);
+		printf("Movements: %d\n", game->movements);
 	}
 }
 
@@ -131,6 +141,11 @@ int ft_fill_map(t_game *game, char **argv)
             game->map.full[i][j] = line[j];
 			if (line[j] == 'C')
 				game->map.coins++;
+			if (line[j] == 'E')
+				{
+					game->map.exit.x = j;
+					game->map.exit.y = i;
+				}
             j++;
         }
         free(line);
@@ -254,6 +269,8 @@ int ft_render_map(t_game *game)
 			{
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->coins.img_ptr, j * IMG_WIDTH, i * IMG_HEIGHT);
 			}
+			else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->open_exit.img_ptr, j * IMG_WIDTH, i * IMG_HEIGHT);
             else if (game->map.full[i][j] == 'E')
                 mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->exit_closed.img_ptr, j * IMG_WIDTH, i * IMG_HEIGHT);
             j++;
