@@ -23,12 +23,21 @@
 
 # define KEY_Q				113
 # define KEY_ESC  			65307
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+# define KEY_UP				65362
+# define KEY_LEFT			65361
+# define KEY_DOWN			65364
+# define KEY_RIGHT			65363
 
-# define WALL_XPM			"res/world/wall_mid.xpm"
-# define FLOOR_XPM			"res/world/floor_1.xpm"
-# define COINS_XPM			"res/world/chest_full.xpm"
+# define WALL_XPM			"res/world/wall.xpm"
+# define FLOOR_XPM			"res/world/floor.xpm"
+# define COINS_XPM			"res/world/chest_closed.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
+# define PLAYER_XPM			"res/world/captain_2.xpm"
 
 typedef struct s_image
 {
@@ -50,7 +59,6 @@ typedef struct s_map
 	int		columns;
 	int		coins;
 	int		exit;
-	int		players;
 	t_positon	player;
 }	t_map;
 
@@ -67,10 +75,7 @@ typedef struct s_game
 	t_image		coins;
 	t_image		open_exit;
 	t_image		exit_closed;
-	t_image		player_front;
-	t_image		player_left;
-	t_image		player_right;
-	t_image		player_back;
+	t_image		player;
 }	t_game;
 
 void	ft_check_command_line_arguments(int argc, char **argv, t_game *game);
@@ -93,7 +98,7 @@ void	ft_render_player(t_game *game, int x, int y);
 void	ft_render_sprite(t_game *game, t_image sprite, int column, int line);
 void	ft_print_movements(t_game *game);
 int	ft_handle_input(int keysym, t_game *game);
-void	ft_player_move(t_game *game, int x, int y, int player_sprite);
+void	ft_player_move(t_game *game, int x, int y);
 int	ft_victory(t_game *game);
 void	ft_error_msg(char *msg, t_game *game);
 int	ft_close_game(t_game *game);
