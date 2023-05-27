@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 19:02:24 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:47:30 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int		ft_render_map(t_game *game);
 int		ft_close_game(t_game *game);
 int		ft_victory(t_game *game);
 int		ft_handle_input(int keysym, t_game *game);
+int		ft_handle_mouse(int keysym, t_game *game);
+void	ft_check_empty_line(char *map, t_game *game);
 void	ft_init_vars(t_game *game);
 void	ft_init_game(t_game *game, char **argv);
 void	ft_init_images(t_game *game);
