@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 08:49:37 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:37:05 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_size_window(t_game *game, char **argv)
 		}
 	}
 	close(fd);
+	game->map_alloc = true;
 }
 
 int	ft_render_map(t_game *game)

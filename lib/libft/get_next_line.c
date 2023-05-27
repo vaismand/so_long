@@ -19,6 +19,7 @@ static void	ft_free_ptr(char **ptr)
 		free(*ptr);
 		*ptr = NULL;
 	}
+	free(ptr);
 }
 
 static char	*get_line(char **backup, char **line)

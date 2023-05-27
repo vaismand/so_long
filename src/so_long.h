@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 08:58:55 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:02:24 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ void	ft_render_sprite(t_game *game, t_image sprite, int column, int line);
 void	ft_print_movements(t_game *game);
 void	ft_player_move(t_game *game, int x, int y);
 void	ft_error_msg(char *msg, t_game *game);
-void	ft_free_all_allocated_memory(t_game *game);
-void	ft_destroy_images(t_game *game);
+void	ft_free_malloc(t_game *game);
+void	ft_destroy_img(t_game *game);
 void	ft_free_map(t_game *game);
 t_image	ft_new_image(void *mlx, char *path, t_game *game);
 

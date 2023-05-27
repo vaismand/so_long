@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:49 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 08:48:39 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:56:56 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_render_sprite(t_game *game, t_image sprite, int column, int line)
 	int	x;
 	int	y;
 
-	x = column * 32;
-	y = line * 32;
+	x = column * PXL;
+	y = line * PXL;
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, sprite.img_ptr, x, y);
 }
 
