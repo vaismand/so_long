@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 08:43:18 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 08:58:55 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 # define WALL_XPM			"res/world/wall.xpm"
 # define FLOOR_XPM			"res/world/floor.xpm"
-# define COINS_XPM			"res/world/chest_closed.xpm"
+# define COINS_XPM			"res/world/chest_full.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_XPM			"res/world/captain_2.xpm"
@@ -71,7 +71,7 @@ typedef struct s_map
 	int			rows;
 	int			columns;
 	int			coins;
-	char		*full;
+	char		**full;
 	t_position	exit;
 }	t_map;
 
