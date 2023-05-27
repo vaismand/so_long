@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/26 22:13:55 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 08:36:49 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 int	ft_victory(t_game *game)
 {
@@ -18,7 +18,6 @@ int	ft_victory(t_game *game)
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	exit(0);
 }
-
 
 int	ft_close_game(t_game *game)
 {
@@ -44,5 +43,5 @@ void	ft_init_game(t_game *game, char **argv)
 	ft_size_window(game, argv);
 	ft_fill_map(game, argv);
 	ft_init_player(game);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * IMG_HEIGHT, game->map.rows * IMG_WIDTH, "so_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * PXL, game->map.rows * PXL, "so_long");
 }

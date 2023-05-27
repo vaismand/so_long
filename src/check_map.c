@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/26 22:13:29 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 08:47:45 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	check_map(t_game *game)
 {
@@ -22,10 +22,10 @@ void	check_map(t_game *game)
 
 void	check_rows(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < game->map.rows)
+	while (i < game->map.rows)
 	{
 		if (game->map.full[i][0] != '1' || game->map.full[i][game->map.columns - 1] != '1')
 			ft_error_msg("Map is not closed", game);
@@ -35,14 +35,14 @@ void	check_rows(t_game *game)
 
 void	count_map_param(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while(i < game->map.rows)
+	while (i < game->map.rows)
 	{
 		j = 0;
-		while(j < game->map.columns)
+		while (j < game->map.columns)
 		{
 			if (!ft_strchr("01CEP", game->map.full[i][j]))
 				ft_error_msg("Map has invalid characters", game);
@@ -61,10 +61,10 @@ void	count_map_param(t_game *game)
 
 void	check_columns(t_game *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(i < game->map.columns)
+	while (i < game->map.columns)
 	{
 		if (game->map.full[0][i] != '1' || game->map.full[game->map.rows - 1][i] != '1')
 			ft_error_msg("Map is not closed", game);

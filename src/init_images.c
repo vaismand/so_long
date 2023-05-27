@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:49 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/26 22:13:49 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 08:48:39 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	ft_render_sprite(t_game *game, t_image sprite, int column, int line)
 {
@@ -40,7 +40,7 @@ t_image	ft_new_image(void *mlx, char *path, t_game *game)
 	t_image	image;
 
 	image.img_ptr = mlx_xpm_file_to_image(mlx, path, &image.x, &image.y);
-	if (image.img_ptr== NULL)
+	if (image.img_ptr == NULL)
 		ft_error_msg("Couldn't find a image. Does it exist?", game);
 	return (image);
 }

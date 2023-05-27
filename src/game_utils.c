@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:15:39 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/26 22:15:47 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 08:44:12 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "so_long.h"
 
 void	ft_print_movements(t_game *game)
 {
@@ -38,6 +38,6 @@ int	ft_handle_input(int keysym, t_game *game)
 
 void	ft_error_msg(char *msg, t_game *game)
 {
-    ft_printf("Error\n%s\n", msg);
-    ft_close_game(game);
+	ft_printf("Error\n%s\n", msg);
+	ft_close_game(game);
 }

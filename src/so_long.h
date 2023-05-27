@@ -6,12 +6,12 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/26 22:53:50 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/27 08:43:18 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -20,13 +20,12 @@
 # include <X11/X.h>
 # include <stdbool.h>
 # include <X11/keysym.h>
-# include "mlx-linux/mlx.h"
-# include "mlx-linux/mlx_int.h"
-# include "lib/libft/libft.h"
-# include "lib/ft_printf/ft_printf.h"
+# include "../mlx-linux/mlx.h"
+# include "../mlx-linux/mlx_int.h"
+# include "../lib/libft/libft.h"
+# include "../lib/ft_printf/ft_printf.h"
 
-# define IMG_HEIGHT			32
-# define IMG_WIDTH			32
+# define PXL			32
 
 # define WALL				'1'
 # define FLOOR 				'0'
@@ -69,19 +68,19 @@ typedef struct s_position
 
 typedef struct s_map
 {
-	char		**full;
-	int		rows;
-	int		columns;
-	int		coins;
+	int			rows;
+	int			columns;
+	int			coins;
+	char		*full;
 	t_position	exit;
 }	t_map;
 
 typedef struct s_game
 {
+	int			movements;
+	int			player_sprite;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int		movements;
-	int		player_sprite;
 	t_map		map;
 	_Bool		map_alloc;
 	t_image		wall;
@@ -92,7 +91,11 @@ typedef struct s_game
 	t_image		player;
 }	t_game;
 
-
+int		ft_fill_map(t_game *game, char **argv);
+int		ft_render_map(t_game *game);
+int		ft_close_game(t_game *game);
+int		ft_victory(t_game *game);
+int		ft_handle_input(int keysym, t_game *game);
 void	ft_init_vars(t_game *game);
 void	ft_init_game(t_game *game, char **argv);
 void	ft_init_images(t_game *game);
@@ -106,20 +109,15 @@ void	count_map_param(t_game *game);
 void	ft_init_mlx(t_game *game);
 void	ft_init_sprites(t_game *game);
 void	ft_size_window(t_game *game, char **argv);
-int	ft_fill_map(t_game *game, char **argv);
-t_image	ft_new_image(void *mlx, char *path, t_game *game);
-int	ft_render_map(t_game *game);
 void	ft_identify_sprite(t_game *game, int x, int y);
 void	ft_render_player(t_game *game, int x, int y);
 void	ft_render_sprite(t_game *game, t_image sprite, int column, int line);
 void	ft_print_movements(t_game *game);
-int	ft_handle_input(int keysym, t_game *game);
 void	ft_player_move(t_game *game, int x, int y);
-int	ft_victory(t_game *game);
 void	ft_error_msg(char *msg, t_game *game);
-int	ft_close_game(t_game *game);
 void	ft_free_all_allocated_memory(t_game *game);
 void	ft_destroy_images(t_game *game);
 void	ft_free_map(t_game *game);
+t_image	ft_new_image(void *mlx, char *path, t_game *game);
 
-# endif
+#endif
