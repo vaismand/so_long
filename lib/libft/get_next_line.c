@@ -24,7 +24,7 @@ static void	ft_free_ptr(char **ptr)
 static char	*get_line(char **backup, char **line)
 {
 	char	*next_backup;
-	int	i;
+	int		i;
 
 	i = 0;
 	next_backup = NULL;
@@ -44,7 +44,7 @@ static char	*get_line(char **backup, char **line)
 
 static int	read_line(int fd, char **buffer, char **backup, char **line)
 {
-	int	bytes_read;
+	int		bytes_read;
 	char	*temporary;
 
 	bytes_read = 1;
@@ -69,7 +69,7 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*line;
 
-	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0 )
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
