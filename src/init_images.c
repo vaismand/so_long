@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:49 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 19:56:56 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:00:58 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	ft_init_images(t_game *game)
 	game->coins = ft_new_image(mlx, COINS_XPM, game);
 	game->open_exit = ft_new_image(mlx, OPEN_EXIT_XPM, game);
 	game->exit_closed = ft_new_image(mlx, EXIT_CLOSED_XPM, game);
-	game->player = ft_new_image(mlx, PLAYER_XPM, game);
+	game->player_right = ft_new_image(mlx, PLAYER_RIGHT_XPM, game);
+	game->player_left = ft_new_image(mlx, PLAYER_LEFT_XPM, game);
 }
 
 t_image	ft_new_image(void *mlx, char *path, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 19:55:04 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:17:04 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,18 @@ void	ft_init_vars(t_game *game)
 	game->player.y = 0;
 	game->map.coins = 0;
 	game->movements = 0;
+	game->player_sprite = 0;
 }
 
 void	ft_init_game(t_game *game, char **argv)
 {
 	game->mlx_ptr = mlx_init();
 	ft_init_vars(game);
+	game->map.full = malloc(sizeof(char *) * ft_count_rows(argv, game));
+	ft_init_map(game, argv);
+	game->map_alloc = true;
 	ft_init_images(game);
-	ft_size_window(game, argv);
-	ft_fill_map(game, argv);
 	ft_init_player(game);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map.columns * PXL, game->map.rows * PXL, "so_long");
+	game->win_ptr = mlx_new_window(game->mlx_ptr,
+			game->map.columns * PXL, game->map.rows * PXL, "so_long");
 }

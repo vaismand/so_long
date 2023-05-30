@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 08:47:45 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/29 19:14:02 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	check_rows(t_game *game)
 	i = 0;
 	while (i < game->map.rows)
 	{
-		if (game->map.full[i][0] != '1' || game->map.full[i][game->map.columns - 1] != '1')
+		if (game->map.full[i][0] != '1' ||
+			game->map.full[i][game->map.columns - 1] != '1')
 			ft_error_msg("Map is not closed", game);
 		i++;
 	}
@@ -66,7 +67,8 @@ void	check_columns(t_game *game)
 	i = 0;
 	while (i < game->map.columns)
 	{
-		if (game->map.full[0][i] != '1' || game->map.full[game->map.rows - 1][i] != '1')
+		if (game->map.full[0][i] != '1'
+			|| game->map.full[game->map.rows - 1][i] != '1')
 			ft_error_msg("Map is not closed", game);
 		i++;
 	}

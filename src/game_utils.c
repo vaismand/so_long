@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:15:39 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/27 19:28:04 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:03:59 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ int	ft_handle_input(int keysym, t_game *game)
 {
 	if (keysym == KEY_Q || keysym == KEY_ESC)
 		ft_close_game(game);
-	else if (keysym == KEY_W || keysym == KEY_UP)
-		ft_player_move(game, 0, -1);
-	else if (keysym == KEY_S || keysym == KEY_DOWN)
-		ft_player_move(game, 0, 1);
 	else if (keysym == KEY_A || keysym == KEY_LEFT)
-		ft_player_move(game, -1, 0);
+		ft_player_move(game, -1, 0, 1);
 	else if (keysym == KEY_D || keysym == KEY_RIGHT)
-		ft_player_move(game, 1, 0);
+		ft_player_move(game, 1, 0, 0);
+	else if (keysym == KEY_W || keysym == KEY_UP)
+		ft_player_move(game, 0, -1, game->player_sprite);
+	else if (keysym == KEY_S || keysym == KEY_DOWN)
+		ft_player_move(game, 0, 1, game->player_sprite);
+	game->movements++;
+	ft_printf("Movements: %d\n", game->movements);
 	return (0);
 }

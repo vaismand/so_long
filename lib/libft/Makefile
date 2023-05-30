@@ -1,3 +1,5 @@
+.SILENT:
+
 SRCS	= ft_atoi.c \
 			ft_bzero.c \
 			ft_calloc.c \
