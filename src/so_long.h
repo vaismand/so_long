@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/29 19:07:34 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:46:21 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,18 @@ typedef struct s_map
 typedef struct s_game
 {
 	int			movements;
-	int			player_sprite;
+	int			player_img;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_map		map;
 	_Bool		map_alloc;
 	t_image		wall;
 	t_image		floor;
-	t_image		coins;
-	t_image		open_exit;
-	t_image		exit_closed;
-	t_image		player_right;
-	t_image		player_left;
+	t_image		chests;
+	t_image		o_exit;
+	t_image		c_exit;
+	t_image		player_r;
+	t_image		player_l;
 	t_position	player;
 }	t_game;
 

@@ -15,7 +15,7 @@ LIBC      = ar -rcs
 RM        = rm -f
 CFLAGS    = -Wall -Wextra -Werror
 INCS      = .
-COMPILER  = cc
+COMPILER  = gcc -no-pie
 
 .c.o:
 	@${COMPILER} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INCS}

@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/29 19:06:45 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:53:20 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,18 @@ int	ft_render_map(t_game *game)
 			if (game->map.full[i][j] == '1')
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->wall.img_ptr, j * PXL, i * PXL);
 			else if (game->map.full[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->coins.img_ptr, j * PXL, i * PXL);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->chests.img_ptr, j * PXL, i * PXL);
 			else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->open_exit.img_ptr, j * PXL, i * PXL);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->o_exit.img_ptr, j * PXL, i * PXL);
 			else if (game->map.full[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->exit_closed.img_ptr, j * PXL, i * PXL);
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->c_exit.img_ptr, j * PXL, i * PXL);
 			else if (game->map.full[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->player_right.img_ptr, j * PXL, i * PXL);
-			else 
+				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->player_r.img_ptr, j * PXL, i * PXL);
+			else
 				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->floor.img_ptr, j * PXL, i * PXL);
 		}
 	}
-	ft_player_move(game, 0, 0, game->player_sprite);
+	ft_player_move(game, 0, 0, game->player_img);
 	return (0);
 }
 

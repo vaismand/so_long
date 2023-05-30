@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:59 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/29 19:18:55 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:50:05 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	ft_render_player(t_game *game, int x, int y, int player_sprite)
 {
 	if (game->map.full[y][x] == 'P' && player_sprite == 0)
-		ft_render_sprite(game, game->player_right, x, y);
+		ft_render_sprite(game, game->player_r, x, y);
 	else if (game->map.full[y][x] == 'P' && player_sprite == 1)
-		ft_render_sprite(game, game->player_left, x, y);
+		ft_render_sprite(game, game->player_l, x, y);
 }
 
 void	ft_player_move(t_game *game, int x, int y, int player_sprite)
 {
-	game->player_sprite = player_sprite;
+	game->player_img = player_sprite;
 	if (game->map.full[game->player.y + y][game->player.x + x] != '1')
 	{
 		if (game->map.full[game->player.y + y][game->player.x + x] == 'C')
@@ -46,7 +46,7 @@ void	ft_player_move(t_game *game, int x, int y, int player_sprite)
 			game->map.full[game->player.y][game->player.x] = 'P';
 		}
 		ft_render_player(game, game->player.x,
-			game->player.y, game->player_sprite);
+			game->player.y, game->player_img);
 	}
 }
 

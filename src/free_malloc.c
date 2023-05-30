@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:58:29 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/29 19:15:56 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:47:03 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	ft_destroy_img(t_game *game)
 {
 	mlx_destroy_image(game->mlx_ptr, game->wall.img_ptr);
 	mlx_destroy_image(game->mlx_ptr, game->floor.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->coins.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->player_left.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->player_right.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->exit_closed.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->open_exit.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->chests.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->player_l.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->player_r.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->c_exit.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->o_exit.img_ptr);
 }
