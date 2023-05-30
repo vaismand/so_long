@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 14:46:21 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:57:24 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 # define WALL_XPM			"res/world/wall.xpm"
 # define FLOOR_XPM			"res/world/floor.xpm"
-# define COINS_XPM			"res/world/chest.xpm"
+# define CHESTS_XPM			"res/world/chest.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"

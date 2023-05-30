@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 14:53:20 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 15:02:32 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ void	ft_init_map(t_game *game, char **argv)
 	close(fd);
 }
 
+void	ft_put_img(t_game *game, int x, int y, t_image img)
+{
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img.img_ptr, x, y);
+}
+
 int	ft_render_map(t_game *game)
 {
 	int	i;
@@ -77,17 +82,17 @@ int	ft_render_map(t_game *game)
 		while (++j < game->map.columns)
 		{
 			if (game->map.full[i][j] == '1')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->wall.img_ptr, j * PXL, i * PXL);
+				ft_put_img(game, j * PXL, i * PXL, game->wall);
 			else if (game->map.full[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->chests.img_ptr, j * PXL, i * PXL);
+				ft_put_img(game, j * PXL, i * PXL, game->chests);
 			else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->o_exit.img_ptr, j * PXL, i * PXL);
+				ft_put_img(game, j * PXL, i * PXL, game->o_exit);
 			else if (game->map.full[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->c_exit.img_ptr, j * PXL, i * PXL);
+				ft_put_img(game, j * PXL, i * PXL, game->c_exit);
 			else if (game->map.full[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->player_r.img_ptr, j * PXL, i * PXL);
+				ft_put_img(game, j * PXL, i * PXL, game->player_r);
 			else
-				mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->floor.img_ptr, j * PXL, i * PXL);
+				ft_put_img(game, j * PXL, i * PXL, game->floor);
 		}
 	}
 	ft_player_move(game, 0, 0, game->player_img);

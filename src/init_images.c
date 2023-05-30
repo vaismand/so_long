@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:49 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 14:48:15 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:57:33 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_init_images(t_game *game)
 	mlx = game->mlx_ptr;
 	game->wall = ft_new_image(mlx, WALL_XPM, game);
 	game->floor = ft_new_image(mlx, FLOOR_XPM, game);
-	game->chests = ft_new_image(mlx, COINS_XPM, game);
+	game->chests = ft_new_image(mlx, CHESTS_XPM, game);
 	game->o_exit = ft_new_image(mlx, OPEN_EXIT_XPM, game);
 	game->c_exit = ft_new_image(mlx, EXIT_CLOSED_XPM, game);
 	game->player_r = ft_new_image(mlx, PLAYER_RIGHT_XPM, game);
