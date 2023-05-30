@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:15 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 15:22:17 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:45:13 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char **argv)
 	ft_init_game(game, argv);
 	check_map(game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_handle_input, game);
+	mlx_hook(game->win_ptr, DestroyNotify, \
+	ButtonPressMask, ft_close_game, game);
 	mlx_loop_hook(game->mlx_ptr, ft_render_map, game);
 	mlx_loop(game->mlx_ptr);
 	ft_free_malloc(game);
