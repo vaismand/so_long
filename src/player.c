@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:59 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 14:58:33 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:50:58 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,17 @@ void	ft_player_move(t_game *game, int x, int y, int player_sprite)
 				ft_victory(game);
 		if (game->player.x == game->map.exit.x
 			&& game->player.y == game->map.exit.y)
-		{
 			game->map.full[game->player.y][game->player.x] = 'E';
-			game->player.x += x;
-			game->player.y += y;
-		}
 		else
-		{
 			game->map.full[game->player.y][game->player.x] = '0';
-			game->player.x += x;
-			game->player.y += y;
-		}
+		game->player.x += x;
+		game->player.y += y;
 		game->map.full[game->player.y][game->player.x] = 'P';
 		ft_render_player(game, game->player.x,
 			game->player.y, game->player_img);
 	}
+	else
+		game->movements--;
 }
 
 void	ft_init_player(t_game *game)
