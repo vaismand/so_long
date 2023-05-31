@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:58:29 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 14:47:03 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/30 23:46:58 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	ft_free_malloc(t_game *game)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
-		free(game);
 	}
+	free(game);
 }
 
 void	ft_free_map(t_game *game)
