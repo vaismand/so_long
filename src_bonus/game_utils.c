@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:15:39 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 18:50:48 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:13:11 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_print_movements(t_game *game)
 {

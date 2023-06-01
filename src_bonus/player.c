@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:59 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 18:50:58 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:13:26 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	ft_render_player(t_game *game, int x, int y, int player_sprite)
 {

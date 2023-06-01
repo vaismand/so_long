@@ -6,11 +6,11 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 18:58:34 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:13:15 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	ft_victory(t_game *game)
 {
