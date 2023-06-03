@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 14:50:05 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:01:48 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ void	check_rows(t_game *game)
 	i = 0;
 	while (i < game->map.rows - 1)
 	{
+		if (game->map.columns + 1 != ft_strlen(game->map.full[i]))
+			ft_error_msg("Map is not rectangular", game);
 		if (game->map.full[i][0] != '1' ||
 			game->map.full[i][game->map.columns - 1] != '1')
 			ft_error_msg("Map is not closed", game);
-		if (game->map.columns + 1 != ft_strlen(game->map.full[i]))
-			ft_error_msg("Map is not rectangular", game);
 		i++;
 	}
-	if (game->map.full[i][0] != '1' ||
-			game->map.full[i][game->map.columns - 1] != '1')
-			ft_error_msg("Map is not closed", game);
 	if (game->map.columns != ft_strlen(game->map.full[i]))
 			ft_error_msg("Map is not rectangular", game);
+	if (game->map.full[i][0] != '1' ||
+			game->map.full[i][game->map.columns] != '1')
+			ft_error_msg("Map is not closed", game);
+
 }
 
 void	count_map_param(t_game *game)
