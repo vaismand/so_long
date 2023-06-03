@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:15 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 23:45:54 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 13:47:56 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ft_check_argv(int argc, char **argv, t_game *game)
 	map_argv_len = ft_strlen(argv[1]);
 	if (!ft_strnstr(&argv[1][map_argv_len - 4], ".ber", 4))
 		ft_error_msg("Map file extention is wrong!", game);
+	if (open(argv[1], O_RDONLY) < 0)
+		ft_error_msg("Map file doesn't exist!", game);
 }
 
 int	main(int argc, char **argv)
