@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:58:29 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 17:00:37 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:23:07 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_destroy_img(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->img_count)
+	while (i < game->img_count && game->img[i].img_ptr != NULL)
 	{
 		if (game->img[i].img_ptr != NULL)
 			mlx_destroy_image(game->mlx_ptr, game->img[i].img_ptr);

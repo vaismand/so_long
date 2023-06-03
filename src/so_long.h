@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 16:58:10 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:15:28 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define FLOOR_XPM			"res/world/floor.xpm"
 # define CHESTS_XPM			"res/world/chest.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
-# define EXIT_CLOSED_XPM	"res/world/ddoors_closed.xpm"
+# define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
 # define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
 
@@ -108,6 +108,7 @@ void	ft_init_player(t_game *game);
 void	check_map(t_game *game);
 void	check_rows(t_game *game);
 void	check_columns(t_game *game);
+void	check_map_rectangular(t_game *game);
 void	ft_read_map(t_game *game, char *argv);
 void	verify_map_param(t_game *game);
 void	count_map_param(t_game *game);

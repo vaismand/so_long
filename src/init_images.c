@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:49 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 16:56:37 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 20:47:46 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_init_images(t_game *game)
 
 	mlx = game->mlx_ptr;
 	game->img = malloc(sizeof(t_image) * 7);
+	if (game->img == NULL)
+		ft_error_msg("Failed to allocate memory for images.", game);
 	game->img[0] = ft_new_image(mlx, WALL_XPM, game);
 	game->img[1] = ft_new_image(mlx, FLOOR_XPM, game);
 	game->img[2] = ft_new_image(mlx, PLAYER_RIGHT_XPM, game);
