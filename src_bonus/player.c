@@ -30,6 +30,8 @@ void	ft_player_move(t_game *game, int x, int y, int player_sprite)
 		if (game->map.full[game->player.y + y][game->player.x + x] == 'E')
 			if (game->map.coins == 0)
 				ft_victory(game);
+		if (game->map.full[game->player.y + y][game->player.x + x] == 'X')
+			ft_close_game(game);
 		if (game->player.x == game->map.exit.x
 			&& game->player.y == game->map.exit.y)
 			game->map.full[game->player.y][game->player.x] = 'E';

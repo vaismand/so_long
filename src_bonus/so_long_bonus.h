@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 00:00:51 by dvaisman         ###   ########.fr       */
+/*   Created: 2023/06/01 20:26:52 by dvaisman          #+#    #+#             */
+/*   Updated: 2023/06/01 20:26:52 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -26,6 +26,7 @@
 # include "../lib/ft_printf/ft_printf.h"
 
 # define PXL			32
+# define ANIMATION_DELAY	1500
 
 # define WALL				'1'
 # define FLOOR 				'0'
@@ -48,11 +49,15 @@
 
 # define WALL_XPM			"res/world/wall.xpm"
 # define FLOOR_XPM			"res/world/floor.xpm"
-# define CHESTS_XPM			"res/world/chest.xpm"
+# define CHESTS_1_XPM			"res/world/chest1.xpm"
+# define CHESTS_2_XPM			"res/world/chest2.xpm"
+# define CHESTS_3_XPM			"res/world/chest3.xpm"
+# define CHESTS_4_XPM			"res/world/chest4.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
 # define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
+# define ENEMY_XPM			"res/world/vampire.xpm"
 
 # define RIGHT				0
 # define LEFT				1
@@ -89,11 +94,15 @@ typedef struct s_game
 	_Bool		map_alloc;
 	t_image		wall;
 	t_image		floor;
-	t_image		chests;
+	t_image		chest_1;
+	t_image		chest_2;
+	t_image		chest_3;
+	t_image		chest_4;
 	t_image		o_exit;
 	t_image		c_exit;
 	t_image		player_r;
 	t_image		player_l;
+	t_image		enemy;
 	t_position	player;
 }	t_game;
 

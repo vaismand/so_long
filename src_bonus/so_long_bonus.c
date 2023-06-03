@@ -32,13 +32,18 @@ int	main(int argc, char **argv)
 
 	game = malloc(sizeof(t_game));
 	ft_check_argv(argc, argv, game);
+	ft_printf("test1\n");
 	ft_init_vars(game);
+	ft_printf("test2\n");
 	game->map.full = malloc(sizeof(char *) * ft_count_rows(argv, game));
 	ft_init_map(game, argv);
+	ft_printf("test3\n");
 	game->map_alloc = true;
 	game->mlx_ptr = mlx_init();
 	ft_init_images(game);
+	ft_printf("test4\n");
 	ft_init_player(game);
+	ft_printf("test5\n");
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			game->map.columns * PXL, game->map.rows * PXL, "so_long");
 	check_map(game);

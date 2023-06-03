@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+#include <time.h>
 
 int	ft_count_rows(char **argv, t_game *game)
 {
@@ -70,6 +71,27 @@ void	ft_put_img(t_game *game, int x, int y, t_image img)
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img.img_ptr, x, y);
 }
 
+void ft_chest_anim(t_game *game, int x, int y)
+{
+	static int animationTimer = 0;
+
+	animationTimer++;
+	if (animationTimer <= ANIMATION_DELAY)
+		ft_put_img(game, x * PXL, y * PXL, game->chest_1);
+	else if (animationTimer >= ANIMATION_DELAY * 4)
+	{
+		ft_put_img(game, x * PXL, y * PXL, game->chest_1);
+		animationTimer = 0;
+	}
+	else if (animationTimer >= ANIMATION_DELAY * 3 && animationTimer < ANIMATION_DELAY * 4)
+		ft_put_img(game, x * PXL, y * PXL, game->chest_4);
+	else if (animationTimer > ANIMATION_DELAY * 2 && animationTimer < ANIMATION_DELAY * 3)
+	  ft_put_img(game, x * PXL, y * PXL, game->chest_3);
+	else if (animationTimer > ANIMATION_DELAY)
+      ft_put_img(game, x * PXL, y * PXL, game->chest_2);
+}
+
+
 int	ft_render_map(t_game *game)
 {
 	int	i;
@@ -84,13 +106,15 @@ int	ft_render_map(t_game *game)
 			if (game->map.full[i][j] == '1')
 				ft_put_img(game, j * PXL, i * PXL, game->wall);
 			else if (game->map.full[i][j] == 'C')
-				ft_put_img(game, j * PXL, i * PXL, game->chests);
+				ft_chest_anim(game, j, i);
 			else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
 				ft_put_img(game, j * PXL, i * PXL, game->o_exit);
 			else if (game->map.full[i][j] == 'E')
 				ft_put_img(game, j * PXL, i * PXL, game->c_exit);
 			else if (game->map.full[i][j] == 'P')
 				ft_put_img(game, j * PXL, i * PXL, game->player_r);
+			else if (game->map.full[i][j] == 'X')
+				ft_put_img(game, j * PXL, i * PXL, game->enemy);
 			else
 				ft_put_img(game, j * PXL, i * PXL, game->floor);
 		}

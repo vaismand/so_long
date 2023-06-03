@@ -42,9 +42,13 @@ void	ft_destroy_img(t_game *game)
 {
 	mlx_destroy_image(game->mlx_ptr, game->wall.img_ptr);
 	mlx_destroy_image(game->mlx_ptr, game->floor.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->chests.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->chest_1.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->chest_2.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->chest_3.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->chest_4.img_ptr);
 	mlx_destroy_image(game->mlx_ptr, game->player_l.img_ptr);
 	mlx_destroy_image(game->mlx_ptr, game->player_r.img_ptr);
 	mlx_destroy_image(game->mlx_ptr, game->c_exit.img_ptr);
 	mlx_destroy_image(game->mlx_ptr, game->o_exit.img_ptr);
+	mlx_destroy_image(game->mlx_ptr, game->enemy.img_ptr);
 }

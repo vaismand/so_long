@@ -45,7 +45,7 @@ void	count_map_param(t_game *game)
 		j = 0;
 		while (j < game->map.columns)
 		{
-			if (!ft_strchr("01CEP", game->map.full[i][j]))
+			if (!ft_strchr("01CEPX", game->map.full[i][j]))
 				ft_error_msg("Map has invalid characters", game);
 			if (game->map.full[i][j] == 'C')
 				game->map.coins++;

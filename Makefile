@@ -17,7 +17,7 @@ RED       = \033[0;91m
 GREEN     = \033[1;92m
 BLUE      = \033[0;94m
 
-all: ${NAME} ${NAME_BONUS}
+all: ${NAME}
 
 ${NAME}: ${OBJS}
 	@${MAKE} -s -C ./lib/libft > /dev/null
@@ -50,7 +50,7 @@ clean:
 
 re: fclean all
 
-bonus: all
+bonus: ${NAME_BONUS}
 
 norm:
 	norminette -R CheckForbiddenSourceHeader */*.[ch]
