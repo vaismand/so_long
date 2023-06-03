@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 21:23:37 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 21:30:23 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,5 @@ void	ft_init_vars(t_game *game)
 	game->movements = 0;
 	game->player_img = 0;
 	game->img_count = 0;
+	game->img = 0;
 }
