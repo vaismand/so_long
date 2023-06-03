@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:26:52 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/01 20:26:52 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:45:43 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,16 @@
 
 # define WALL_XPM			"res/world/wall.xpm"
 # define FLOOR_XPM			"res/world/floor.xpm"
-# define CHESTS_1_XPM			"res/world/chest1.xpm"
-# define CHESTS_2_XPM			"res/world/chest2.xpm"
-# define CHESTS_3_XPM			"res/world/chest3.xpm"
-# define CHESTS_4_XPM			"res/world/chest4.xpm"
+# define CHESTS_1_XPM		"res/world/chest1.xpm"
+# define CHESTS_2_XPM		"res/world/chest2.xpm"
+# define CHESTS_3_XPM		"res/world/chest3.xpm"
+# define CHESTS_4_XPM		"res/world/chest4.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
 # define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
 # define ENEMY_XPM			"res/world/vampire.xpm"
+# define DEFAULT_IMAGE_XPM	"res/world/floor.xpm"
 
 # define RIGHT				0
 # define LEFT				1
@@ -88,21 +89,12 @@ typedef struct s_game
 {
 	int			movements;
 	int			player_img;
+	int			img_count;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_map		map;
 	_Bool		map_alloc;
-	t_image		wall;
-	t_image		floor;
-	t_image		chest_1;
-	t_image		chest_2;
-	t_image		chest_3;
-	t_image		chest_4;
-	t_image		o_exit;
-	t_image		c_exit;
-	t_image		player_r;
-	t_image		player_l;
-	t_image		enemy;
+	t_image		*img;
 	t_position	player;
 }	t_game;
 

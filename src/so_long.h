@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 00:00:51 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:58:10 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 # define FLOOR_XPM			"res/world/floor.xpm"
 # define CHESTS_XPM			"res/world/chest.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
-# define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
+# define EXIT_CLOSED_XPM	"res/world/ddoors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
 # define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
 
@@ -83,17 +83,12 @@ typedef struct s_game
 {
 	int			movements;
 	int			player_img;
+	int			img_count;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_map		map;
 	_Bool		map_alloc;
-	t_image		wall;
-	t_image		floor;
-	t_image		chests;
-	t_image		o_exit;
-	t_image		c_exit;
-	t_image		player_r;
-	t_image		player_l;
+	t_image		*img;
 	t_position	player;
 }	t_game;
 

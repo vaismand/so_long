@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:15 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 13:47:56 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:00:51 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ int	main(int argc, char **argv)
 	ft_init_map(game, argv);
 	game->map_alloc = true;
 	game->mlx_ptr = mlx_init();
-	ft_init_images(game);
 	ft_init_player(game);
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			game->map.columns * PXL, game->map.rows * PXL, "so_long");
 	check_map(game);
+	ft_init_images(game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_handle_input, game);
 	mlx_hook(game->win_ptr, DestroyNotify, \
 	ButtonPressMask, ft_close_game, game);

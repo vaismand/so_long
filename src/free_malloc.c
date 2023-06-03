@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:58:29 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 23:46:58 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:00:37 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,14 @@ void	ft_free_map(t_game *game)
 
 void	ft_destroy_img(t_game *game)
 {
-	mlx_destroy_image(game->mlx_ptr, game->wall.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->floor.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->chests.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->player_l.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->player_r.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->c_exit.img_ptr);
-	mlx_destroy_image(game->mlx_ptr, game->o_exit.img_ptr);
+	int	i;
+
+	i = 0;
+	while (i < game->img_count)
+	{
+		if (game->img[i].img_ptr != NULL)
+			mlx_destroy_image(game->mlx_ptr, game->img[i].img_ptr);
+		i++;
+	}
+	free(game->img);
 }

@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:59 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 19:13:26 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:40:15 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_render_player(t_game *game, int x, int y, int player_sprite)
 {
 	if (game->map.full[y][x] == 'P' && player_sprite == 0)
-		ft_render_sprite(game, game->player_r, x, y);
+		ft_render_sprite(game, game->img[2], x, y);
 	else if (game->map.full[y][x] == 'P' && player_sprite == 1)
-		ft_render_sprite(game, game->player_l, x, y);
+		ft_render_sprite(game, game->img[3], x, y);
 }
 
 void	ft_player_move(t_game *game, int x, int y, int player_sprite)

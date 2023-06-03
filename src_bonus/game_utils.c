@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:15:39 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 19:13:11 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 15:22:54 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 void	ft_print_movements(t_game *game)
 {
 	char	*movements;
+	char	*line;
 
 	movements = ft_itoa(game->movements);
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 10, 10, 0x00FFFFFF, movements);
+	line = ft_strjoin("Movements: ", movements);
 	free(movements);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 10, 10, 0x00FFFFFF, line);
+	free(line);
 }
 
 int	ft_handle_input(int keysym, t_game *game)

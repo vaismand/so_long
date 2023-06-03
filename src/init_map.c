@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/30 15:30:21 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/03 16:43:37 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ int	ft_render_map(t_game *game)
 		while (++j < game->map.columns)
 		{
 			if (game->map.full[i][j] == '1')
-				ft_put_img(game, j * PXL, i * PXL, game->wall);
+				ft_put_img(game, j * PXL, i * PXL, game->img[0]);
 			else if (game->map.full[i][j] == 'C')
-				ft_put_img(game, j * PXL, i * PXL, game->chests);
+				ft_put_img(game, j * PXL, i * PXL, game->img[6]);
 			else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
-				ft_put_img(game, j * PXL, i * PXL, game->o_exit);
+				ft_put_img(game, j * PXL, i * PXL, game->img[4]);
 			else if (game->map.full[i][j] == 'E')
-				ft_put_img(game, j * PXL, i * PXL, game->c_exit);
+				ft_put_img(game, j * PXL, i * PXL, game->img[5]);
 			else if (game->map.full[i][j] == 'P')
-				ft_put_img(game, j * PXL, i * PXL, game->player_r);
+				ft_put_img(game, j * PXL, i * PXL, game->img[2]);
 			else
-				ft_put_img(game, j * PXL, i * PXL, game->floor);
+				ft_put_img(game, j * PXL, i * PXL, game->img[1]);
 		}
 	}
 	ft_player_move(game, 0, 0, game->player_img);
