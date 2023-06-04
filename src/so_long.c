@@ -42,11 +42,11 @@ int	main(int argc, char **argv)
 	game->mlx_ptr = mlx_init();
 	if (!game->mlx_ptr)
 		ft_error_msg("mlx_init() failed!", game);
-	ft_init_player(game);
 	game->win_ptr = mlx_new_window(game->mlx_ptr,
 			game->map.columns * PXL, game->map.rows * PXL, "so_long");
 	if (!game->win_ptr)
 		ft_error_msg("mlx_new_window() failed!", game);
+	ft_init_player(game);
 	check_map(game);
 	ft_init_images(game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_handle_input, game);

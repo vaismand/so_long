@@ -79,6 +79,4 @@ void	verify_map_param(t_game *game)
 		ft_error_msg("Map has no coins", game);
 	if (game->map.exit.x == 0 && game->map.exit.y == 0)
 		ft_error_msg("Map has no exit", game);
-	if (game->player.x == 0 && game->player.y == 0)
-		ft_error_msg("Map has no player", game);
 }

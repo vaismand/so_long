@@ -96,6 +96,6 @@ int	ft_render_map(t_game *game)
 
 void	ft_check_empty_line(char *map, t_game *game)
 {
-	if (map[0] == '\0')
-		ft_error_msg("Error\nEmpty line in map", game);
+	if (map[0] == '\0' || map[0] == '\n')
+		ft_error_msg("Empty line in map", game);
 }
