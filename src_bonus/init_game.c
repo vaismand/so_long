@@ -6,31 +6,30 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 21:30:23 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:38:43 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	ft_victory(t_game *game)
+void	ft_print_movements(t_game *game)
 {
-	ft_printf("You won!\n");
-	ft_free_malloc(game);
-	exit(0);
+	char	*movements;
+	char	*line;
+
+	movements = ft_itoa(game->movements);
+	line = ft_strjoin("Movements: ", movements);
+	free(movements);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 10, 10, 0x00FFFFFF, line);
+	free(line);
 }
 
-int	ft_close_game(t_game *game)
+void	check_map(t_game *game)
 {
-	ft_printf("You lost!\n");
-	ft_free_malloc(game);
-	exit(0);
-}
-
-void	ft_error_msg(char *msg, t_game *game)
-{
-	ft_free_malloc(game);
-	ft_printf("Error\n%s\n", msg);
-	exit(0);
+	check_rows(game);
+	check_columns(game);
+	count_map_param(game);
+	verify_map_param(game);
 }
 
 void	ft_init_vars(t_game *game)

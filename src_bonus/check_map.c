@@ -6,18 +6,16 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/31 19:13:44 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:27:13 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	check_map(t_game *game)
+void	ft_check_empty_line(char *map, t_game *game)
 {
-	check_rows(game);
-	check_columns(game);
-	count_map_param(game);
-	verify_map_param(game);
+	if (map[0] == '\0')
+		ft_error_msg("Error\nEmpty line in map", game);
 }
 
 void	check_rows(t_game *game)

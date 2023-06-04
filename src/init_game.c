@@ -6,34 +6,13 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 21:29:51 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/04 11:52:24 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_victory(t_game *game)
-{
-	ft_printf("You won!\n");
-	ft_free_malloc(game);
-	exit(0);
-}
-
-int	ft_close_game(t_game *game)
-{
-	ft_printf("You lost!\n");
-	ft_free_malloc(game);
-	exit(0);
-}
-
-void	ft_error_msg(char *msg, t_game *game)
-{
-	ft_free_malloc(game);
-	ft_printf("Error\n%s\n", msg);
-	exit(0);
-}
-
-void	ft_init_vars(t_game *game)
+void	ft_init_vars(t_game *game, char **argv)
 {
 	game->map.rows = 0;
 	game->map.columns = 0;
@@ -44,4 +23,7 @@ void	ft_init_vars(t_game *game)
 	game->player_img = 0;
 	game->img_count = 0;
 	game->img = 0;
+	game->map.full = malloc(sizeof(char *) * ft_count_rows(argv, game));
+	if (!game->map.full)
+		ft_error_msg("Malloc error", game);
 }

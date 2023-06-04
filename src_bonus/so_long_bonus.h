@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:26:52 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 16:45:43 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:35:09 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@
 # define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
 # define ENEMY_XPM			"res/world/vampire.xpm"
 # define DEFAULT_IMAGE_XPM	"res/world/floor.xpm"
-
 # define RIGHT				0
 # define LEFT				1
 
@@ -120,7 +119,7 @@ void	count_map_param(t_game *game);
 void	ft_init_sprites(t_game *game);
 void	ft_identify_sprite(t_game *game, int x, int y);
 void	ft_render_player(t_game *game, int x, int y, int player_sprite);
-void	ft_render_sprite(t_game *game, t_image sprite, int column, int line);
+void	ft_render_img(t_game *game, t_image sprite, int column, int line);
 void	ft_print_movements(t_game *game);
 void	ft_player_move(t_game *game, int x, int y, int player_sprite);
 void	ft_error_msg(char *msg, t_game *game);

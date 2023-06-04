@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 16:50:11 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/04 13:28:12 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,31 +65,45 @@ void	ft_init_map(t_game *game, char **argv)
 	close(fd);
 }
 
-void	ft_put_img(t_game *game, int x, int y, t_image img)
+void	ft_chest_anim(t_game *game, int x, int y)
 {
-	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img.img_ptr, x, y);
-}
+	static int	animation_timer = 0;
 
-void ft_chest_anim(t_game *game, int x, int y)
-{
-	static int animationTimer = 0;
-
-	animationTimer++;
-	if (animationTimer <= ANIMATION_DELAY)
-		ft_put_img(game, x * PXL, y * PXL, game->img[4]);
-	else if (animationTimer >= ANIMATION_DELAY * 4)
+	animation_timer++;
+	if (animation_timer <= ANIMATION_DELAY)
+		ft_render_img(game, game->img[4], x, y);
+	else if (animation_timer >= ANIMATION_DELAY * 4)
 	{
-		ft_put_img(game, x * PXL, y * PXL, game->img[4]);
-		animationTimer = 0;
+		ft_render_img(game, game->img[4], x, y);
+		animation_timer = 0;
 	}
-	else if (animationTimer >= ANIMATION_DELAY * 3 && animationTimer < ANIMATION_DELAY * 4)
-		ft_put_img(game, x * PXL, y * PXL, game->img[7]);
-	else if (animationTimer > ANIMATION_DELAY * 2 && animationTimer < ANIMATION_DELAY * 3)
-	  ft_put_img(game, x * PXL, y * PXL, game->img[6]);
-	else if (animationTimer > ANIMATION_DELAY)
-      ft_put_img(game, x * PXL, y * PXL, game->img[5]);
+	else if (animation_timer >= ANIMATION_DELAY * 3
+		&& animation_timer < ANIMATION_DELAY * 4)
+		ft_render_img(game, game->img[7], x, y);
+	else if (animation_timer > ANIMATION_DELAY * 2
+		&& animation_timer < ANIMATION_DELAY * 3)
+		ft_render_img(game, game->img[6], x, y);
+	else if (animation_timer > ANIMATION_DELAY)
+		ft_render_img(game, game->img[5], x, y);
 }
 
+void	ft_render_options(t_game *game, int i, int j)
+{
+	if (game->map.full[i][j] == '1')
+		ft_render_img(game, game->img[0], j, i);
+	else if (game->map.full[i][j] == 'C')
+		ft_chest_anim(game, j, i);
+	else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
+		ft_render_img(game, game->img[8], j, i);
+	else if (game->map.full[i][j] == 'E')
+		ft_render_img(game, game->img[9], j, i);
+	else if (game->map.full[i][j] == 'P')
+		ft_render_img(game, game->img[2], j, i);
+	else if (game->map.full[i][j] == 'X')
+		ft_render_img(game, game->img[10], j, i);
+	else
+		ft_render_img(game, game->img[1], j, i);
+}
 
 int	ft_render_map(t_game *game)
 {
@@ -102,29 +116,10 @@ int	ft_render_map(t_game *game)
 		j = -1;
 		while (++j < game->map.columns)
 		{
-			if (game->map.full[i][j] == '1')
-				ft_put_img(game, j * PXL, i * PXL, game->img[0]);
-			else if (game->map.full[i][j] == 'C')
-				ft_chest_anim(game, j, i);
-			else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
-				ft_put_img(game, j * PXL, i * PXL, game->img[8]);
-			else if (game->map.full[i][j] == 'E')
-				ft_put_img(game, j * PXL, i * PXL, game->img[9]);
-			else if (game->map.full[i][j] == 'P')
-				ft_put_img(game, j * PXL, i * PXL, game->img[2]);
-			else if (game->map.full[i][j] == 'X')
-				ft_put_img(game, j * PXL, i * PXL, game->img[10]);
-			else
-				ft_put_img(game, j * PXL, i * PXL, game->img[1]);
+			ft_render_options(game, i, j);
 		}
 	}
 	ft_print_movements(game);
 	ft_player_move(game, 0, 0, game->player_img);
 	return (0);
-}
-
-void	ft_check_empty_line(char *map, t_game *game)
-{
-	if (map[0] == '\0')
-		ft_error_msg("Error\nEmpty line in map", game);
 }
