@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 21:15:28 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/04 12:23:51 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		ft_handle_input(int keysym, t_game *game);
 int		ft_handle_mouse(int keysym, t_game *game);
 int		ft_count_rows(char **argv, t_game *game);
 void	ft_check_empty_line(char *map, t_game *game);
-void	ft_init_vars(t_game *game);
+void	ft_init_vars(t_game *game, char **argv);
 void	ft_init_game(t_game *game, char **argv);
 void	ft_init_map(t_game *game, char **argv);
 void	ft_init_images(t_game *game);
@@ -115,8 +115,8 @@ void	count_map_param(t_game *game);
 void	ft_init_sprites(t_game *game);
 void	ft_identify_sprite(t_game *game, int x, int y);
 void	ft_render_player(t_game *game, int x, int y, int player_sprite);
-void	ft_render_sprite(t_game *game, t_image sprite, int column, int line);
-void	ft_print_movements(t_game *game);
+void	ft_render_img(t_game *game, t_image img, int column, int line);
+void	ft_print_movements(t_game *game, int x, int y);
 void	ft_player_move(t_game *game, int x, int y, int player_sprite);
 void	ft_error_msg(char *msg, t_game *game);
 void	ft_free_malloc(t_game *game);

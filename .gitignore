@@ -2,3 +2,4 @@
 so_long_tester/
 lib/ft_printf/libftprintf.a
 lib/libft/libft.a
+.editorconfig
