@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/05 13:59:30 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:36:43 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_game
 	void		*win_ptr;
 	t_map		map;
 	_Bool		map_alloc;
+	_Bool		map_valid;
 	t_image		*img;
 	t_position	player;
 }	t_game;

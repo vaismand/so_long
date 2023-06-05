@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/05 14:01:29 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/05 22:41:16 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_init_vars(t_game *game, char **argv)
 	game->img = 0;
 	game->map.exit_count = 0;
 	game->map.full = malloc(sizeof(char *) * ft_count_rows(argv, game));
+	game->map_valid = false;
 	if (!game->map.full)
 		ft_error_msg("Malloc error", game);
 }
