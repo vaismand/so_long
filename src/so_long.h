@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/05 22:36:43 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:16:13 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_map		map;
-	_Bool		map_alloc;
-	_Bool		map_valid;
+	bool		map_alloc;
+	bool		map_valid;
+	bool		**visited;
 	t_image		*img;
 	t_position	player;
 }	t_game;
@@ -124,7 +125,11 @@ void	ft_error_msg(char *msg, t_game *game);
 void	ft_free_malloc(t_game *game);
 void	ft_destroy_img(t_game *game);
 void	ft_free_map(t_game *game);
+void	ft_free_visited(t_game *game);
 void	ft_is_valid_path(t_game *game);
+bool	ft_dfs_moves(t_game *game, int x, int y, bool has_path);
+bool	ft_visited_map(t_game *game, int player_x, int player_y);
+bool	ft_dfs(t_game *game, int x, int y, bool has_path);
 t_image	ft_new_image(void *mlx, char *path, t_game *game);
 
 #endif
