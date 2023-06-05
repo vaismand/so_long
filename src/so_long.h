@@ -122,6 +122,7 @@ void	ft_error_msg(char *msg, t_game *game);
 void	ft_free_malloc(t_game *game);
 void	ft_destroy_img(t_game *game);
 void	ft_free_map(t_game *game);
+void	ft_is_valid_path(t_game *game);
 t_image	ft_new_image(void *mlx, char *path, t_game *game);
 
 #endif

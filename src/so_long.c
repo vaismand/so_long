@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 		ft_error_msg("mlx_new_window() failed!", game);
 	ft_init_player(game);
 	check_map(game);
+	ft_is_valid_path(game);
 	ft_init_images(game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, ft_handle_input, game);
 	mlx_hook(game->win_ptr, DestroyNotify, \
