@@ -5,7 +5,7 @@ SRCS := $(wildcard src/*.c)
 SRCS_BONUS := $(wildcard src_bonus/*.c)
 OBJS := $(SRCS:.c=.o)
 OBJS_BONUS := $(SRCS_BONUS:.c=.o)
-CC        = gcc
+CC        = gcc -g
 RM        = rm -f
 LIBFT     = ./lib/libft/libft.a
 FT_PRINTF = ./lib/ft_printf/libftprintf.a

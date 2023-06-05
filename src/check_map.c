@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 12:28:26 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:01:25 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	count_map_param(t_game *game)
 			{
 				game->map.exit.x = j;
 				game->map.exit.y = i;
+				game->map.exit_count++;
 			}
 			j++;
 		}

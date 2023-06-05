@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 13:36:33 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:59:30 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_map
 	int			rows;
 	int			columns;
 	int			coins;
+	int			exit_count;
 	char		**full;
 	t_position	exit;
 }	t_map;
