@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:15 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 01:20:11 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:21:29 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char **argv)
 		ft_error_msg("Malloc error", game);
 	ft_check_argv(argc, argv, game);
 	ft_init_vars(game, argv);
-	ft_init_map(game, argv);
+	ft_init_map(game);
 	game->map_alloc = true;
 	ft_init_mlx(game);
 	ft_init_player(game);

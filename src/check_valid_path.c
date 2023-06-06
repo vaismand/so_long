@@ -6,23 +6,42 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:39:20 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 01:11:15 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:15:31 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	is_within_bounds(t_game *game, int row, int col)
+bool	ft_check_visited(t_game *game, bool has_path, bool all_visited)
 {
-	return (row >= 0 && row < game->map.rows
-		&& col >= 0 && col < game->map.columns);
+	int	i;
+	int	j;
+
+	all_visited = true;
+	has_path = true;
+	i = -1;
+	while (++i < game->map.rows)
+	{
+		j = -1;
+		while (++j < game->map.columns)
+		{
+			if (game->map.full[i][j] == 'E' && !game->visited[i][j])
+			{
+				all_visited = false;
+				break ;
+			}
+		}
+		if (!all_visited)
+			break ;
+	}
+	if (all_visited)
+		game->map_valid = true;
+	return (has_path);
 }
 
 bool	ft_dfs(t_game *game, int x, int y, bool has_path)
 {
 	bool	all_visited;
-	int		i;
-	int		j;
 
 	game->visited[x][y] = true;
 	all_visited = false;
@@ -33,26 +52,7 @@ bool	ft_dfs(t_game *game, int x, int y, bool has_path)
 		if (game->map.full[x][y] == 'E')
 			game->map.exit_count--;
 		if (game->map.coins == 0 && game->map.exit_count == 0)
-		{
-			all_visited = true;
-			for (i = 0; i < game->map.rows; i++)
-			{
-				for (j = 0; j < game->map.columns; j++)
-				{
-					if ((game->map.full[i][j] == 'C' || game->map.full[i][j] == 'E') && !game->visited[i][j])
-					{
-						all_visited = false;
-						break ;
-					}
-				}
-				if (!all_visited)
-					break;
-			}
-			if (all_visited)
-				game->map_valid = true;
-			else 
-				has_path = false;
-		}
+			has_path = ft_check_visited(game, has_path, all_visited);
 	}
 	if (has_path)
 		has_path = ft_dfs_moves(game, x, y, has_path);
@@ -74,7 +74,7 @@ bool	ft_dfs_moves(t_game *game, int x, int y, bool has_path)
 	{
 		new_row = x + dx[k];
 		new_col = y + dy[k];
-		if (is_within_bounds(game, new_row, new_col)
+		if (ft_is_within_bounds(game, new_row, new_col)
 			&& game->map.full[new_row][new_col] != '1'
 			&& !game->visited[new_row][new_col])
 			has_path = ft_dfs(game, new_row, new_col, has_path);

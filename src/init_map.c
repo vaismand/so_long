@@ -6,23 +6,24 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 12:06:06 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:39:16 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_count_rows(char **argv, t_game *game)
+int	ft_count_rows(t_game *game)
 {
 	char	*line;
-	int		fd;
 	int		rows;
 
-	fd = open(argv[1], O_RDONLY);
 	rows = 0;
+	game->fd = open(game->map.file, O_RDONLY);
+	if (game->fd < 0)
+		ft_error_msg("Error opening map", game);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(game->fd);
 		if (line == 0)
 			break ;
 		else
@@ -32,22 +33,23 @@ int	ft_count_rows(char **argv, t_game *game)
 			free(line);
 		}
 	}
-	close(fd);
+	close(game->fd);
 	return (rows);
 }
 
-void	ft_init_map(t_game *game, char **argv)
+void	ft_init_map(t_game *game)
 {
 	char	*line;
-	int		fd;
 	int		i;
 	int		j;
 
-	fd = open(argv[1], O_RDONLY);
 	i = -1;
+	game->fd = open(game->map.file, O_RDONLY);
+	if (game->fd < 0)
+		ft_error_msg("Error opening map", game);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(game->fd);
 		if (line == 0)
 			break ;
 		else
@@ -61,8 +63,7 @@ void	ft_init_map(t_game *game, char **argv)
 			free(line);
 		}
 	}
-	free(line);
-	close(fd);
+	close(game->fd);
 }
 
 int	ft_render_map(t_game *game)
