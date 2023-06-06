@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/05 14:01:25 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:20:03 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_rows(t_game *game)
 	{
 		if (game->map.full[i][0] != '1' ||
 			game->map.full[i][game->map.columns - 1] != '1')
-			ft_error_msg("Map is not closed", game);
+			ft_error_msg("Map is not closed or not rectangular", game);
 	}
 }
 
@@ -69,7 +69,7 @@ void	check_columns(t_game *game)
 	{
 		if (game->map.full[0][i] != '1'
 			|| game->map.full[game->map.rows - 1][i] != '1')
-			ft_error_msg("Map is not closed", game);
+			ft_error_msg("Map is not closed or not rectangular", game);
 		i++;
 	}
 }

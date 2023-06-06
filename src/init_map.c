@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 10:39:16 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:35:39 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ int	ft_count_rows(t_game *game)
 			break ;
 		else
 		{
-			ft_check_empty_line(line, game);
+			if (ft_check_empty_line(line) == false)
+			{
+				free(line);
+				ft_error_msg("Map has empty line", game);
+			}
 			rows++;
 			free(line);
 		}
@@ -59,7 +63,6 @@ void	ft_init_map(t_game *game)
 			j = -1;
 			while (++j < game->map.columns)
 				game->map.full[i][j] = line[j];
-			game->map.rows++;
 			free(line);
 		}
 	}
@@ -95,8 +98,10 @@ int	ft_render_map(t_game *game)
 	return (0);
 }
 
-void	ft_check_empty_line(char *map, t_game *game)
+bool	ft_check_empty_line(char *map)
 {
 	if (map[0] == '\0' || map[0] == '\n')
-		ft_error_msg("Empty line in map", game);
+		return (false);
+	else
+		return (true);
 }

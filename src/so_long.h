@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 10:32:46 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:35:04 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_game
 	t_map		map;
 	bool		map_alloc;
 	bool		map_valid;
+	bool		visited_alloc;
 	bool		**visited;
 	t_image		*img;
 	t_position	player;
@@ -104,7 +105,7 @@ int		ft_victory(t_game *game);
 int		ft_handle_input(int keysym, t_game *game);
 int		ft_handle_mouse(int keysym, t_game *game);
 int		ft_count_rows(t_game *game);
-void	ft_check_empty_line(char *map, t_game *game);
+bool	ft_check_empty_line(char *map);
 void	ft_init_vars(t_game *game, char **argv);
 void	ft_init_game(t_game *game, char **argv);
 void	ft_init_map(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/04 21:39:20 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 10:15:31 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:24:09 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ bool	ft_visited_map(t_game *game, int player_x, int player_y)
 		}
 		i++;
 	}
+	game->visited_alloc = true;
 	has_path = ft_dfs(game, player_x, player_y, has_path);
 	return (has_path);
 }

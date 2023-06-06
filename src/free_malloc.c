@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:58:29 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 01:20:54 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:24:00 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,13 @@ void	ft_free_visited(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->map.rows)
+	if (game->visited_alloc == true)
 	{
-		free(game->visited[i]);
-		i++;
+		while (i < game->map.rows)
+		{
+			free(game->visited[i]);
+			i++;
+		}
 	}
 	free(game->visited);
 }

@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:54 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 10:38:55 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:24:40 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	ft_handle_input(int keysym, t_game *game)
 
 void	ft_init_vars(t_game *game, char **argv)
 {
-	game->map.rows = 0;
 	game->map.columns = 0;
 	game->player.x = 0;
 	game->player.y = 0;
@@ -52,11 +51,13 @@ void	ft_init_vars(t_game *game, char **argv)
 	game->img = 0;
 	game->map.exit_count = 0;
 	game->map.file = argv[1];
-	game->map.full = malloc(sizeof(char *) * ft_count_rows(game));
+	game->map.rows = ft_count_rows(game);
+	game->map.full = malloc(sizeof(char *) * game->map.rows);
 	if (!game->map.full)
 		ft_error_msg("Malloc error", game);
-	game->visited = malloc(sizeof(bool *) * ft_count_rows(game));
+	game->visited = malloc(sizeof(bool *) * game->map.rows);
 	if (!game->visited)
 		ft_error_msg("Malloc error", game);
 	game->map_valid = false;
+	game->visited_alloc = false;
 }
