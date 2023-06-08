@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:58:29 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/03 20:49:32 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 10:45:12 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_free_malloc(t_game *game)
 	{
 		ft_destroy_img(game);
 		ft_free_map(game);
+		ft_free_visited(game);
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
@@ -38,12 +39,28 @@ void	ft_free_map(t_game *game)
 	free(game->map.full);
 }
 
+void	ft_free_visited(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	if (game->visited_alloc == true)
+	{
+		while (i < game->map.rows)
+		{
+			free(game->visited[i]);
+			i++;
+		}
+	}
+	free(game->visited);
+}
+
 void	ft_destroy_img(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (i < game->img_count)
+	while (i < game->img_count && game->img[i].img_ptr != NULL)
 	{
 		if (game->img[i].img_ptr != NULL)
 			mlx_destroy_image(game->mlx_ptr, game->img[i].img_ptr);

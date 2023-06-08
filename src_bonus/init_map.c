@@ -6,48 +6,49 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 13:28:12 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:19:19 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	ft_count_rows(char **argv, t_game *game)
+int	ft_count_rows(t_game *game)
 {
 	char	*line;
-	int		fd;
 	int		rows;
 
-	fd = open(argv[1], O_RDONLY);
+	game->fd = open(game->map.file, O_RDONLY);
+	if (game->fd < 0)
+		ft_error_msg("Error opening map", game);
 	rows = 0;
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(game->fd);
 		if (line == 0)
 			break ;
 		else
 		{
-			ft_check_empty_line(line, game);
 			rows++;
 			free(line);
 		}
 	}
-	close(fd);
+	close(game->fd);
 	return (rows);
 }
 
-void	ft_init_map(t_game *game, char **argv)
+void	ft_init_map(t_game *game)
 {
 	char	*line;
-	int		fd;
 	int		i;
 	int		j;
 
-	fd = open(argv[1], O_RDONLY);
 	i = -1;
+	game->fd = open(game->map.file, O_RDONLY);
+	if (game->fd < 0)
+		ft_error_msg("Error opening map", game);
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = get_next_line(game->fd);
 		if (line == 0)
 			break ;
 		else
@@ -57,12 +58,10 @@ void	ft_init_map(t_game *game, char **argv)
 			j = -1;
 			while (++j < game->map.columns)
 				game->map.full[i][j] = line[j];
-			game->map.rows++;
 			free(line);
 		}
 	}
-	free(line);
-	close(fd);
+	close(game->fd);
 }
 
 void	ft_chest_anim(t_game *game, int x, int y)
@@ -98,7 +97,7 @@ void	ft_render_options(t_game *game, int i, int j)
 	else if (game->map.full[i][j] == 'E')
 		ft_render_img(game, game->img[9], j, i);
 	else if (game->map.full[i][j] == 'P')
-		ft_render_img(game, game->img[2], j, i);
+		ft_render_player(game, j, i, game->player_img);
 	else if (game->map.full[i][j] == 'X')
 		ft_render_img(game, game->img[10], j, i);
 	else

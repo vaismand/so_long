@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 15:35:39 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:12:21 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ int	ft_count_rows(t_game *game)
 			break ;
 		else
 		{
-			if (ft_check_empty_line(line) == false)
-			{
-				free(line);
-				ft_error_msg("Map has empty line", game);
-			}
 			rows++;
 			free(line);
 		}
@@ -89,7 +84,7 @@ int	ft_render_map(t_game *game)
 			else if (game->map.full[i][j] == 'E' && game->map.coins > 0)
 				ft_render_img(game, game->img[5], j, i);
 			else if (game->map.full[i][j] == 'P')
-				ft_render_img(game, game->img[2], j, i);
+				ft_render_player(game, j, i, game->player_img);
 			else
 				ft_render_img(game, game->img[1], j, i);
 		}

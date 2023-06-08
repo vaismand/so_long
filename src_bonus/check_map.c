@@ -6,29 +6,22 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 13:27:13 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:15:02 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_check_empty_line(char *map, t_game *game)
-{
-	if (map[0] == '\0')
-		ft_error_msg("Error\nEmpty line in map", game);
-}
-
 void	check_rows(t_game *game)
 {
 	int	i;
 
-	i = 0;
-	while (i < game->map.rows)
+	i = -1;
+	while (++i < game->map.rows)
 	{
 		if (game->map.full[i][0] != '1' ||
 			game->map.full[i][game->map.columns - 1] != '1')
-			ft_error_msg("Map is not closed", game);
-		i++;
+			ft_error_msg("Map is not closed or not rectangular", game);
 	}
 }
 
@@ -51,6 +44,7 @@ void	count_map_param(t_game *game)
 			{
 				game->map.exit.x = j;
 				game->map.exit.y = i;
+				game->map.exit_count++;
 			}
 			j++;
 		}
@@ -78,6 +72,12 @@ void	verify_map_param(t_game *game)
 		ft_error_msg("Map has no coins", game);
 	if (game->map.exit.x == 0 && game->map.exit.y == 0)
 		ft_error_msg("Map has no exit", game);
-	if (game->player.x == 0 && game->player.y == 0)
+	if (game->map.exit_count > 1)
+		ft_error_msg("Map has more than one exit", game);
+	if (game->map.player_count != 1)
+		ft_error_msg("Map has more than one player", game);
+	if (game->map.player_count == 0)
 		ft_error_msg("Map has no player", game);
+	if (game->map.player_count > 1)
+		ft_error_msg("Map has more than one player", game);
 }

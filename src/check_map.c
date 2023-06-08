@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 15:20:03 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:06:16 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,10 @@ void	verify_map_param(t_game *game)
 		ft_error_msg("Map has no coins", game);
 	if (game->map.exit.x == 0 && game->map.exit.y == 0)
 		ft_error_msg("Map has no exit", game);
+	if (game->map.exit_count > 1)
+		ft_error_msg("Map has more than one exit", game);
+	if (game->map.player_count == 0)
+		ft_error_msg("Map has no player", game);
+	if (game->map.player_count != 1)
+		ft_error_msg("Map has more than one player", game);
 }

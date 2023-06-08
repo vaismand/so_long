@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:15:39 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 13:40:39 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:23:44 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_error_msg(char *msg, t_game *game)
 	exit(0);
 }
 
-
 int	ft_handle_input(int keysym, t_game *game)
 {
 	if (keysym == KEY_Q || keysym == KEY_ESC)
@@ -59,4 +58,10 @@ int	ft_handle_input(int keysym, t_game *game)
 		ft_player_move(game, 0, 1, game->player_img);
 	}
 	return (0);
+}
+
+bool	ft_is_within_bounds(t_game *game, int row, int col)
+{
+	return (row >= 0 && row < game->map.rows
+		&& col >= 0 && col < game->map.columns);
 }

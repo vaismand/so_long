@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 15:35:04 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:05:14 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
 # define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
-
 # define RIGHT				0
 # define LEFT				1
 
@@ -76,7 +75,8 @@ typedef struct s_map
 	int			columns;
 	int			coins;
 	int			exit_count;
-	char	*file;
+	int			player_count;
+	char		*file;
 	char		**full;
 	t_position	exit;
 }	t_map;
@@ -103,9 +103,7 @@ int		ft_render_map(t_game *game);
 int		ft_close_game(t_game *game);
 int		ft_victory(t_game *game);
 int		ft_handle_input(int keysym, t_game *game);
-int		ft_handle_mouse(int keysym, t_game *game);
 int		ft_count_rows(t_game *game);
-bool	ft_check_empty_line(char *map);
 void	ft_init_vars(t_game *game, char **argv);
 void	ft_init_game(t_game *game, char **argv);
 void	ft_init_map(t_game *game);
@@ -114,12 +112,8 @@ void	ft_init_player(t_game *game);
 void	check_map(t_game *game);
 void	check_rows(t_game *game);
 void	check_columns(t_game *game);
-void	check_map_rectangular(t_game *game);
-void	ft_read_map(t_game *game, char *argv);
 void	verify_map_param(t_game *game);
 void	count_map_param(t_game *game);
-void	ft_init_sprites(t_game *game);
-void	ft_identify_sprite(t_game *game, int x, int y);
 void	ft_render_player(t_game *game, int x, int y, int player_sprite);
 void	ft_render_img(t_game *game, t_image img, int column, int line);
 void	ft_print_movements(t_game *game, int x, int y);

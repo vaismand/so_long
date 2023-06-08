@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:59 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/04 12:19:37 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:05:51 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,10 @@ void	ft_init_player(t_game *game)
 			{
 				game->player.x = j;
 				game->player.y = i;
-				game->map.full[i][j] = '0';
-				return ;
+				game->map.player_count++;
 			}
 			j++;
 		}
 		i++;
 	}
-	ft_error_msg("Couldn't find the player. Does it exist?", game);
 }
