@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:26:52 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/09 11:48:56 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:51:16 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@
 # define CHESTS_4_XPM		"res/world/chest4.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
-# define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
-# define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
+# define PLAYER_RIGHT_XPM	"res/world/player_right.xpm"
+# define PLAYER_LEFT_XPM	"res/world/player_left.xpm"
 # define ENEMY_XPM			"res/world/vampire.xpm"
 # define RIGHT				0
 # define LEFT				1
