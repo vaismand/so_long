@@ -51,10 +51,8 @@
 # define CHESTS_XPM			"res/world/chest.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
-# define PLAYER_RIGHT_XPM	"res/world/Player_right.xpm"
-# define PLAYER_LEFT_XPM	"res/world/Player_left.xpm"
-# define RIGHT				0
-# define LEFT				1
+# define PLAYER_RIGHT_XPM	"res/world/player_right.xpm"
+# define PLAYER_LEFT_XPM	"res/world/player_left.xpm"
 
 typedef struct s_image
 {

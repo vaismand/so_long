@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:26:52 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/08 11:17:08 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:48:56 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "../lib/ft_printf/ft_printf.h"
 
 # define PXL			32
-# define ANIMATION_DELAY	1500
+# define ANIMATION_DELAY	1300
 
 # define WALL				'1'
 # define FLOOR 				'0'
