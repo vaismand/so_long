@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:28 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/08 11:06:16 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:03:51 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	check_map(t_game *game)
 	check_columns(game);
 	count_map_param(game);
 	verify_map_param(game);
+	if (game->map.rows < 3 || game->map.columns < 3)
+		ft_error_msg("Map is too small", game);
+	if (game->map.rows > 100 || game->map.columns > 100)
+		ft_error_msg("Map is too big", game);
+	if (game->map.rows == game->map.columns)
+		ft_error_msg("Map is not rectangular", game);
 }
 
 void	check_rows(t_game *game)

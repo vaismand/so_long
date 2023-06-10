@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:33 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/08 11:19:19 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:26:23 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,6 @@ void	ft_init_map(t_game *game)
 	close(game->fd);
 }
 
-void	ft_chest_anim(t_game *game, int x, int y)
-{
-	static int	animation_timer = 0;
-
-	animation_timer++;
-	if (animation_timer <= ANIMATION_DELAY)
-		ft_render_img(game, game->img[4], x, y);
-	else if (animation_timer >= ANIMATION_DELAY * 4)
-	{
-		ft_render_img(game, game->img[4], x, y);
-		animation_timer = 0;
-	}
-	else if (animation_timer >= ANIMATION_DELAY * 3
-		&& animation_timer < ANIMATION_DELAY * 4)
-		ft_render_img(game, game->img[7], x, y);
-	else if (animation_timer > ANIMATION_DELAY * 2
-		&& animation_timer < ANIMATION_DELAY * 3)
-		ft_render_img(game, game->img[6], x, y);
-	else if (animation_timer > ANIMATION_DELAY)
-		ft_render_img(game, game->img[5], x, y);
-}
-
 void	ft_render_options(t_game *game, int i, int j)
 {
 	if (game->map.full[i][j] == '1')
@@ -99,7 +77,7 @@ void	ft_render_options(t_game *game, int i, int j)
 	else if (game->map.full[i][j] == 'P')
 		ft_render_player(game, j, i, game->player_img);
 	else if (game->map.full[i][j] == 'X')
-		ft_render_img(game, game->img[10], j, i);
+		ft_enemy_move(game, j, i);
 	else
 		ft_render_img(game, game->img[1], j, i);
 }

@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:26:52 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/09 11:51:16 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/06/09 17:43:46 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # define PXL			32
 # define ANIMATION_DELAY	1300
+# define ENEMY_DELAY		6500
 
 # define WALL				'1'
 # define FLOOR 				'0'
@@ -101,6 +102,7 @@ typedef struct s_game
 	bool		**visited;
 	t_image		*img;
 	t_position	player;
+	t_position	enemy;
 }	t_game;
 
 int		ft_fill_map(t_game *game, char **argv);
@@ -122,8 +124,10 @@ void	verify_map_param(t_game *game);
 void	count_map_param(t_game *game);
 void	ft_render_player(t_game *game, int x, int y, int player_sprite);
 void	ft_render_img(t_game *game, t_image sprite, int column, int line);
+void	ft_chest_anim(t_game *game, int x, int y);
 void	ft_print_movements(t_game *game);
 void	ft_player_move(t_game *game, int x, int y, int player_sprite);
+void	ft_enemy_move(t_game *game, int x, int y);
 void	ft_error_msg(char *msg, t_game *game);
 void	ft_free_malloc(t_game *game);
 void	ft_destroy_img(t_game *game);
