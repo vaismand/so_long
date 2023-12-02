@@ -6,7 +6,7 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 12:24:24 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/05/25 17:05:11 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:51:24 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char			*ft_strjoin_sided(char const *s1, char const *s2, int side);
 char			*ft_memjoin(void *s1, size_t l1, void *s2, size_t l2);
 char			*ft_chartostr(char c);
 char			*ft_emptystr(void);
-char			*get_next_line(int fd);
 void			ft_lstadd_back(t_list **lst, t_list *new);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 void			ft_lstdelone(t_list *lst, void (*del)(void*));
@@ -78,7 +77,7 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_fake_use(void *ptr);
-int				ft_strlen(const char *str);
+size_t			ft_strlen(const char *str);
 int				ft_lstsize(t_list *lst);
 int				ft_tolower(int c);
 int				ft_toupper(int c);

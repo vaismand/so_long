@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vaismand <vaismand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:13:42 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/08 11:05:14 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:44:32 by vaismand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@
 # include "../lib/libft/libft.h"
 # include "../lib/ft_printf/ft_printf.h"
 
-# define PXL			32
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
+
+# define PXL			40
 
 # define WALL				'1'
 # define FLOOR 				'0'
@@ -48,11 +52,13 @@
 
 # define WALL_XPM			"res/world/wall.xpm"
 # define FLOOR_XPM			"res/world/floor.xpm"
-# define CHESTS_XPM			"res/world/chest.xpm"
+# define CHESTS_XPM			"res/world/chest3.xpm"
 # define OPEN_EXIT_XPM		"res/world/doors_open.xpm"
 # define EXIT_CLOSED_XPM	"res/world/doors_closed.xpm"
 # define PLAYER_RIGHT_XPM	"res/world/player_right.xpm"
 # define PLAYER_LEFT_XPM	"res/world/player_left.xpm"
+# define EXIT_PLAYER_RIGHT_XPM	"res/world/doors_closed_knight_right.xpm"
+# define EXIT_PLAYER_LEFT_XPM	"res/world/doors_closed_knight_left.xpm"
 
 typedef struct s_image
 {
@@ -65,13 +71,15 @@ typedef struct s_position
 {
 	int	x;
 	int	y;
+	int	next_x;
+	int	next_y;
 }	t_position;
 
 typedef struct s_map
 {
 	int			rows;
 	int			columns;
-	int			coins;
+	int			chests;
 	int			exit_count;
 	int			player_count;
 	char		*file;
@@ -79,14 +87,28 @@ typedef struct s_map
 	t_position	exit;
 }	t_map;
 
+typedef struct s_gnl
+{
+	int		rd;
+	int		fd;
+	char	*buff;
+	char	*str;
+	char	*line;
+	size_t	i;
+	size_t	j;
+}	t_gnl;
+
 typedef struct s_game
 {
 	int			movements;
 	int			player_img;
 	int			img_count;
 	int			fd;
+	int			i;
+	int			j;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	char		*line;
 	t_map		map;
 	bool		map_alloc;
 	bool		map_valid;
@@ -94,39 +116,35 @@ typedef struct s_game
 	bool		**visited;
 	t_image		*img;
 	t_position	player;
+	t_gnl		gnl;
 }	t_game;
 
-int		ft_fill_map(t_game *game, char **argv);
 int		ft_render_map(t_game *game);
 int		ft_close_game(t_game *game);
 int		ft_victory(t_game *game);
 int		ft_handle_input(int keysym, t_game *game);
-int		ft_count_rows(t_game *game);
-void	ft_init_vars(t_game *game, char **argv);
+int		ft_check_rectangular(t_game *game);
+int		ft_read_map_and_init(t_game *game);
+int		ft_init_map(t_game *game);
+void	ft_fill_map(t_game *game);
+void	ft_init_vars(t_game *game);
 void	ft_init_game(t_game *game, char **argv);
-void	ft_init_map(t_game *game);
 void	ft_init_images(t_game *game);
 void	ft_init_player(t_game *game);
-void	check_map(t_game *game);
-void	check_rows(t_game *game);
-void	check_columns(t_game *game);
-void	verify_map_param(t_game *game);
-void	count_map_param(t_game *game);
+void	ft_check_argv(int argc, char **argv, t_game *game);
+void	ft_init_mlx(t_game *game);
+void	ft_check_map(t_game *game);
+void	ft_verify_map_param(t_game *game);
 void	ft_render_player(t_game *game, int x, int y, int player_sprite);
 void	ft_render_img(t_game *game, t_image img, int column, int line);
 void	ft_print_movements(t_game *game, int x, int y);
 void	ft_player_move(t_game *game, int x, int y, int player_sprite);
 void	ft_error_msg(char *msg, t_game *game);
 void	ft_free_malloc(t_game *game);
-void	ft_destroy_img(t_game *game);
-void	ft_free_map(t_game *game);
-void	ft_free_visited(t_game *game);
 void	ft_is_valid_path(t_game *game);
-bool	ft_check_visited(t_game *game, bool has_path, bool all_visited);
+char	*gnl_strjoin(char *left_str, t_gnl gnl, t_game *game);
+char	*get_next_line(t_gnl gnl, int fd, t_game *game);
 bool	ft_dfs_moves(t_game *game, int x, int y, bool has_path);
-bool	ft_visited_map(t_game *game, int player_x, int player_y);
-bool	ft_dfs(t_game *game, int x, int y, bool has_path);
 bool	ft_is_within_bounds(t_game *game, int row, int col);
-t_image	ft_new_image(void *mlx, char *path, t_game *game);
 
 #endif

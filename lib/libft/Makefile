@@ -36,7 +36,6 @@ SRCS	= ft_atoi.c \
 			ft_striteri.c \
 			ft_chartostr.c \
 			ft_strndup.c \
-			get_next_line.c \
 
 SRCS_B	= ft_lstnew.c \
 		ft_lstadd_front.c \

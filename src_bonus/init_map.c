@@ -12,56 +12,59 @@
 
 #include "so_long_bonus.h"
 
-int	ft_count_rows(t_game *game)
+int	ft_check_rectangular(t_game *game)
 {
-	char	*line;
-	int		rows;
+	int		i;
 
+	i = 0;
 	game->fd = open(game->map.file, O_RDONLY);
 	if (game->fd < 0)
-		ft_error_msg("Error opening map", game);
-	rows = 0;
+		ft_error_msg("Error opening map\n", game);
 	while (1)
 	{
-		line = get_next_line(game->fd);
-		if (line == 0)
+		game->line = get_next_line(game->gnl, game->fd, game);
+		if (game->line == 0)
 			break ;
 		else
 		{
-			rows++;
-			free(line);
+			if ((int)ft_strlen(game->line) != game->map.columns)
+				i++;
+			free(game->line);
 		}
 	}
-	close(game->fd);
-	return (rows);
+	if (close(game->fd) < 0)
+		ft_error_msg("Error closing map\n", game);
+	if (i > 0)
+		return (1);
+	return (0);
 }
 
-void	ft_init_map(t_game *game)
+int	ft_init_map(t_game *game)
 {
-	char	*line;
 	int		i;
 	int		j;
 
-	i = -1;
-	game->fd = open(game->map.file, O_RDONLY);
-	if (game->fd < 0)
-		ft_error_msg("Error opening map", game);
-	while (1)
+	i = 0;
+	game->map.full = malloc(sizeof(char *) * (game->map.rows + 1));
+	if (!game->map.full)
+		ft_error_msg("Malloc error\n", game);
+	while (i < game->map.rows)
 	{
-		line = get_next_line(game->fd);
-		if (line == 0)
-			break ;
-		else
+		game->map.full[i] = malloc(sizeof(char) * (game->map.columns + 1));
+		game->map_alloc = true;
+		if (!game->map.full[i])
+			ft_error_msg("Malloc error\n", game);
+		j = 0;
+		while (j < game->map.columns)
 		{
-			game->map.columns = ft_strlen(line);
-			game->map.full[++i] = malloc(sizeof(char) * game->map.columns);
-			j = -1;
-			while (++j < game->map.columns)
-				game->map.full[i][j] = line[j];
-			free(line);
+			game->map.full[i][j] = '0';
+			j++;
 		}
+		game->map.full[i][j] = '\0';
+		i++;
 	}
-	close(game->fd);
+	game->map.full[i] = NULL;
+	return (close(game->fd));
 }
 
 void	ft_render_options(t_game *game, int i, int j)
@@ -70,14 +73,14 @@ void	ft_render_options(t_game *game, int i, int j)
 		ft_render_img(game, game->img[0], j, i);
 	else if (game->map.full[i][j] == 'C')
 		ft_chest_anim(game, j, i);
-	else if (game->map.full[i][j] == 'E' && game->map.coins == 0)
+	else if (game->map.full[i][j] == 'E' && game->map.chests == 0)
 		ft_render_img(game, game->img[8], j, i);
 	else if (game->map.full[i][j] == 'E')
 		ft_render_img(game, game->img[9], j, i);
+	else if (game->map.full[i][j] == 'X')
+		ft_render_img(game, game->img[10], j, i);
 	else if (game->map.full[i][j] == 'P')
 		ft_render_player(game, j, i, game->player_img);
-	else if (game->map.full[i][j] == 'X')
-		ft_enemy_move(game, j, i);
 	else
 		ft_render_img(game, game->img[1], j, i);
 }
@@ -86,8 +89,10 @@ int	ft_render_map(t_game *game)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = -1;
+	k = 0;
 	while (++i < game->map.rows)
 	{
 		j = -1;
@@ -98,5 +103,11 @@ int	ft_render_map(t_game *game)
 	}
 	ft_print_movements(game);
 	ft_player_move(game, 0, 0, game->player_img);
+	while (k < game->map.enemy_count)
+	{
+		ft_enemy_move(game, &game->enemies[k]);
+		k++;
+	}
+	k = 0;
 	return (0);
 }

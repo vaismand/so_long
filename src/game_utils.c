@@ -6,11 +6,38 @@
 /*   By: dvaisman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 22:15:39 by dvaisman          #+#    #+#             */
-/*   Updated: 2023/06/06 14:11:06 by dvaisman         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:45:07 by dvaisman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char	*gnl_strjoin(char *left_str, t_gnl gnl, t_game *game)
+{
+	gnl.str = malloc(sizeof(char) * (ft_strlen(left_str) + \
+		ft_strlen(gnl.buff) + 1));
+	if (!gnl.str)
+	{
+		free(left_str);
+		free(gnl.buff);
+		ft_error_msg("Malloc error\n", game);
+	}
+	gnl.i = 0;
+	while (gnl.i < ft_strlen(left_str))
+	{
+		gnl.str[gnl.i] = left_str[gnl.i];
+		gnl.i++;
+	}
+	gnl.j = 0;
+	while (gnl.j < ft_strlen(gnl.buff))
+	{
+		gnl.str[gnl.i + gnl.j] = gnl.buff[gnl.j];
+		gnl.j++;
+	}
+	gnl.str[gnl.i + gnl.j] = '\0';
+	free(left_str);
+	return (gnl.str);
+}
 
 int	ft_victory(t_game *game)
 {
@@ -23,13 +50,6 @@ int	ft_close_game(t_game *game)
 {
 	ft_printf("You lost!\n");
 	ft_free_malloc(game);
-	exit(0);
-}
-
-void	ft_error_msg(char *msg, t_game *game)
-{
-	ft_free_malloc(game);
-	ft_printf("Error\n%s\n", msg);
 	exit(0);
 }
 
