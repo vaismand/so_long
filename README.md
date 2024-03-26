@@ -13,15 +13,15 @@
 <h3>Prerequisites</h3>
 <p>Ensure you have a Unix-like system with GCC, Make, and MiniLibX installed.</p>
 <ul>
-    <code>sudo apt update</code>
-    <code>sudo apt install libx11-dev</code>
-    <code>sudo apt install libxext-dev</code>
+    <li><code>sudo apt update</code></li>
+    <li><code>sudo apt install libx11-dev</code></li>
+    <li><code>sudo apt install libxext-dev</code></li>
 </ul>
 
 <h3>Installation and Running</h3>
 <ol>
   <li><strong>Clone the repository:</strong><br>
-  <code>git clone [your-repository-link]</code></li>
+  <code>git clone https://github.com/vaismand/so_long</code></li>
   <li><strong>Compile the game:</strong><br>
   <code>cd so_long &amp;&amp; make</code></li>
   <li><strong>Run the game:</strong><br>
